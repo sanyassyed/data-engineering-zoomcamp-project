@@ -1,0 +1,15 @@
+# python notebook checkpoints
+**/.ipynb_checkpoints/
+
+
+# data folder
+**/ny_taxi_postgres_data/
+
+# data files
+*.csv
+
+# virtual env
+.my_env/
+
+# miscellaneous files
+~$*
