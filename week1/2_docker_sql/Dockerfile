@@ -1,10 +1,11 @@
-# docker files begin with FROM keyword to indicate the base IMAGE to start from
-FROM python:3.9.1
-# will install wget 
-RUN apt-get install wget
-RUN pip install pandas sqlalchemy psycopg2
+FROM python:3.9
 
+RUN pip install pandas
 WORKDIR /app
-COPY ingest_data.py ingest_data.py 
+COPY pipeline.py pipeline.py
 
-ENTRYPOINT [ "python", "ingest_data.py" ]
+ENTRYPOINT ["bash"]
+
+# Commands to execute on bash to first build an image named pandas with the tag test, using the Dockerfile and then run the image to start the container
+# docker build -t pandas:test .
+# docker run -it pandas:test 2023-01-5 
