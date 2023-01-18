@@ -1,10 +1,11 @@
 FROM python:3.9
+RUN apt-get install wget
+RUN pip install pandas sqlalchemy psycopg2
 
-RUN pip install pandas
 WORKDIR /app
-COPY pipeline.py pipeline.py
+COPY ingest_data.py ingest_data.py
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["python", "ingest_data.py"]
 
 # Commands to execute on bash to first build an image named pandas with the tag test, using the Dockerfile and then run the image to start the container
 # docker build -t pandas:test .
