@@ -8,7 +8,7 @@ import os
 # package to connect to the DB
 from sqlalchemy import create_engine
 import argparse
-import wget
+
 
 def main(params):
     user = params.user
