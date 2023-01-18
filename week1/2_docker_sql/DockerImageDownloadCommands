@@ -15,6 +15,7 @@ docker run -it \
   dpage/pgadmin4
 
 
+# Network
 # Recreating the above containers within a docker network
 
 # Creating the nerwork first
@@ -44,7 +45,9 @@ docker run -it \
   --name pgadmin \
   dpage/pgadmin4
 
+# DATA INGESTION - to take data from the source and load it to another platform eg: a database
 
+# COMMAND LINE VERSION
 # Running the ingest_data.py from command line by passing all variables for establishing the connection between PgAdmin and PostgresDB
 source set_env.bashrc
 URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
@@ -57,16 +60,20 @@ python ingest_data.py \
   --table_name=yellow_taxi_trips \
   --url=${URL}
 
-
+# DOCKERIZING VERSION
 # Dockerizing the above and running the ingest file from the container
-# Building the image
+# Building the image using the Dockerfile
 
 docker build -t taxi_ingest:v001 .
 
 
 # CREATING A WRITABLE CONTAINER LAYER OVER THE IMAGE by passing all variables for establishing the connection between PgAdmin and PostgresDB
+# Storing the environment variable for username and password in the set_env.bashrc file
+# Execute this first
 source set_env.bashrc
+# Next
 URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+# Finallly
 docker run -it \
   --network=pg-network \
   taxi_ingest:v001 \
