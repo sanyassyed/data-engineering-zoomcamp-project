@@ -1,3 +1,5 @@
+# POSTGRES CONTAINER CREATION
+#============================
 # DOWNLOADING THE IMAGE FOR POSTGRES AND CREATING A WRITABLE CONTAINER LAYER OVER THE IMAGE
 docker run -it \
   -e POSTGRES_USER="root" \
@@ -7,6 +9,8 @@ docker run -it \
   -p 5432:5432 \
   postgres:13
 
+# PGADMIN CONTAINER CREATION
+#============================
 # DOWNLOADING THE IMAGE FOR PGADMIN AND CREATING A WRITABLE CONTAINER LAYER OVER THE IMAGE
 docker run -it \
   -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
@@ -15,7 +19,8 @@ docker run -it \
   dpage/pgadmin4
 
 
-# Network
+# NETWORK
+#=========
 # Recreating the above containers within a docker network
 
 # Creating the nerwork first
@@ -46,8 +51,10 @@ docker run -it \
   dpage/pgadmin4
 
 # DATA INGESTION - to take data from the source and load it to another platform eg: a database
+#===============
 
 # COMMAND LINE VERSION
+#======================
 # Running the ingest_data.py from command line by passing all variables for establishing the connection between PgAdmin and PostgresDB
 source set_env.bashrc
 URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
@@ -61,6 +68,7 @@ python ingest_data.py \
   --url=${URL}
 
 # DOCKERIZING VERSION
+#======================
 # Dockerizing the above and running the ingest file from the container
 # Building the image using the Dockerfile
 
@@ -93,3 +101,18 @@ ipconfig
 # And from there copy the IPv4 address and prefix it as 172.23.48.1:8080 in the browser to test
 # Then right click on the output.csv.gz file and select copy the link address and use that as URL
 URL="http://172.23.48.1:8000/output.csv.gz"
+
+# TAXI ZONE LOOKUP DATA LOADING
+===============================
+source set_env.bashrc
+URL="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv"
+docker run -it \
+  --network=2_docker_sql_default \
+  taxi_ingest:v001 \
+    --user=${USER} \
+    --password=${PASSWORD} \
+    --host=pgdatabase \
+    --port=5432 \
+    --db=ny_taxi \
+    --table_name=zones \
+    --url=${URL}

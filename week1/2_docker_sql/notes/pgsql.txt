@@ -1,0 +1,195 @@
+-- JOIN STYLE 1
+---------------
+SELECT
+	*
+FROM
+	yellow_taxi_trips t,
+	zones lpu,
+	zones ldo
+WHERE 
+	t."PULocationID" = lpu."LocationID" AND
+	t."DOLocationID" = ldo."LocationID"
+LIMIT 100
+
+-- Only selective columns
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	lpu."Borough" as "Pickup Borough",
+	lpu."Zone" as "Pickup Zone",
+	ldo."Borough" as "Dropoff Borough",
+	ldo."Zone" as "Dropoff Zone"	
+FROM
+	yellow_taxi_trips t,
+	zones lpu,
+	zones ldo
+WHERE 
+	t."PULocationID" = lpu."LocationID" AND
+	t."DOLocationID" = ldo."LocationID"
+LIMIT 100
+
+-- Concatenating columns
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	CONCAT(lpu."Borough",' / ',lpu."Zone")  as "Pickup Borough N Zone",
+	CONCAT(ldo."Borough",' / ', ldo."Zone") as "Dropoff Borough N Zone"
+FROM
+	yellow_taxi_trips t,
+	zones lpu,
+	zones ldo
+WHERE 
+	t."PULocationID" = lpu."LocationID" AND
+	t."DOLocationID" = ldo."LocationID"
+LIMIT 1
+
+-- Order by
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	CONCAT(lpu."Borough",' / ',lpu."Zone")  as "Pickup Borough N Zone",
+	CONCAT(ldo."Borough",' / ', ldo."Zone") as "Dropoff Borough N Zone"
+FROM
+	yellow_taxi_trips t,
+	zones lpu,
+	zones ldo
+WHERE 
+	t."PULocationID" = lpu."LocationID" AND
+	t."DOLocationID" = ldo."LocationID"
+ORDER BY 
+	t."total_amount" DESC
+LIMIT 100
+
+-- JOIN STYLE 2 (Slower)
+------------------------
+-- JOINS
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	CONCAT(lpu."Borough",' / ',lpu."Zone")  as "Pickup Borough N Zone",
+	CONCAT(ldo."Borough",' / ', ldo."Zone") as "Dropoff Borough N Zone"
+FROM
+	yellow_taxi_trips t JOIN zones lpu
+	ON t."PULocationID" = lpu."LocationID"
+	JOIN zones ldo
+	ON t."DOLocationID" = ldo."LocationID"	
+ORDER BY 
+	t."total_amount" DESC
+LIMIT 100
+
+-- INNER JOINS
+--------------
+-- Pickup ids not in zones table
+-- JOINS
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	t."PULocationID",
+	t."DOLocationID"
+FROM
+	yellow_taxi_trips t
+WHERE 
+	t."PULocationID" NOT IN 
+	(SELECT "LocationID" FROM zones)
+LIMIT 100
+
+-- No pickups in these locations
+SELECT
+	"LocationID" as "No pickups in these locations",
+	"Borough",
+	"Zone"
+FROM
+	zones
+WHERE 
+	"LocationID" NOT IN 
+	(SELECT DISTINCT("PULocationID") FROM yellow_taxi_trips)
+
+-- No dropoffs in these locations
+SELECT
+	"LocationID" as "No dropoffs in these locations",
+	"Borough",
+	"Zone"
+FROM
+	zones
+WHERE 
+	"LocationID" NOT IN 
+	(SELECT DISTINCT("DOLocationID") FROM yellow_taxi_trips)
+
+
+-- Deletion
+DELETE FROM zones WHERE "LocationID" = 142;
+
+-- Left JOIN
+------------
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	CONCAT(lpu."Borough",' / ',lpu."Zone")  as "Pickup Borough N Zone",
+	CONCAT(ldo."Borough",' / ', ldo."Zone") as "Dropoff Borough N Zone"
+FROM
+	yellow_taxi_trips t LEFT JOIN zones lpu
+	ON t."PULocationID" = lpu."LocationID"
+	LEFT JOIN zones ldo
+	ON t."DOLocationID" = ldo."LocationID"	
+LIMIT 100
+
+-- Right JOIN
+-------------
+SELECT
+	t.tpep_pickup_datetime,
+	t.tpep_dropoff_datetime,
+	t.total_amount,
+	CONCAT(lpu."Borough",' / ',lpu."Zone")  as "Pickup Borough N Zone",
+	CONCAT(ldo."Borough",' / ', ldo."Zone") as "Dropoff Borough N Zone"
+FROM
+	yellow_taxi_trips t RIGHT JOIN zones lpu
+	ON t."PULocationID" = lpu."LocationID"
+	RIGHT JOIN zones ldo
+	ON t."DOLocationID" = ldo."LocationID"	
+LIMIT 100
+
+
+-- Count how many rides for each day
+SELECT
+	--DATE_TRUNC('DAY', t.tpep_dropoff_datetime),
+	CAST(t."tpep_dropoff_datetime" AS DATE) as day,
+	COUNT(1)
+FROM
+	yellow_taxi_trips t 
+GROUP BY 
+	day
+
+-- Aggregations
+-- Day with the maximum trips 
+SELECT
+	--DATE_TRUNC('DAY', t.tpep_dropoff_datetime),
+	CAST(t."tpep_dropoff_datetime" AS DATE) as day,
+	COUNT(1) as "count"
+FROM
+	yellow_taxi_trips t 
+GROUP BY 
+	day
+ORDER BY "count" DESC
+
+-- group by and order by 2 columns
+SELECT
+	--DATE_TRUNC('DAY', t.tpep_dropoff_datetime),
+	CAST(t."tpep_dropoff_datetime" AS DATE) as day,
+	"DOLocationID",
+	COUNT(1) as "count",
+	MAX(total_amount),
+	MAX(passenger_count)
+FROM
+	yellow_taxi_trips t 
+GROUP BY 
+	1,2
+ORDER BY 
+	"day" ASC,
+	"DOLocationID" ASC,
+
