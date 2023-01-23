@@ -17,3 +17,6 @@
 
 # environment variable
 **/*.bashrc
+
+# google environment credentials
+misc/blissful-flames-375219-24d8499e70a5.json

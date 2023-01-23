@@ -116,3 +116,5 @@ docker run -it \
     --db=ny_taxi \
     --table_name=zones \
     --url=${URL}
+
+    NOTE: # got the newtwork info from the `docker network ls` command
