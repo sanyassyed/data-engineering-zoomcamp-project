@@ -18,8 +18,8 @@
 * `gcloud auth application-default login` - can skip this step as it is a google VM therefore authentication not required
 
 ### Update files in terraform folder
-* Update the terraform version in the `.terraform-version` file
-* Update the region variable in the `variables.tf` file
+* Update the *terraform version* in the `.terraform-version` file
+* Update the *region* variable in the `variables.tf` file
 
 ### Output of `terraform apply` 
 

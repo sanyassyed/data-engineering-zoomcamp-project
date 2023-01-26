@@ -76,11 +76,38 @@
 
 # Ubuntu
 * `htop` -> to check system configurations
-* `ssh de-zoomcamp` -> to ssh into the GCP VM
+* `ssh -i path_to_private_key username_used_when_created_the_key@external_ip_of_vm` eg: `ssh -i ~/.ssh/gcp sanya@35.205.22.55`
+* `ssh de-zoomcamp` -> to ssh into the GCP VM after updating the .ssh config file
 * `logout` -> to logout
 * `Ctrl+D` -> to logout
 * `less .bashrc` -> to view the system config file
 * `source .bashrc` -> to logout and and login / will reevaluate the installations and update the VM so you don't have to logout and login after installing something new on the VM 
+* `gcloud --version` -> to check the gcloud SDK version on the VM
+* `wget url_to_download` -> to download a file/package from a url 
+* `bash path_to_.sh_file` -> to install the package downloaded
+
+## Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
+* Step 1: Go to the folder on the local machine which has the file to be transfered
+* Step 2: Type `sftp ssh_hostname` this will connect you to the root folder in the VM server
+* Step 3: Navigate to the destination folder on the VM server
+* Step 4: Type `put name_of_the_file_to_transfer`
+
 
 # Git
 * `git clone {https link}` -> Anonymously clone a git repo
+
+# GCP
+* `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
+
+
+# Conda
+* [How to activate base in conda](https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/02-working-with-environments/index.html#:~:text=Conda%20has%20a%20default%20environment,into%20your%20base%20software%20environment.)
+* `conda env list` -> List the conda environments
+* `$ conda remove --name my-first-conda-env --all` -> delete an entire environment
+* `conda remove --prefix /path/to/conda-env/ --all` -> If you wish to delete and environment that you created with a --prefix option, then you will need to provide the prefix again when removing the environment.
+
+## Creating Virtual env in conda in the project directory
+* ` conda create --prefix ./.my_env_conda python=3.10.9 pip` -> Path to install the virtual env in the current project directory with pytho 3.10 and pip
+*  `conda activate .my_env_conda` - to activate the virtual env
+* `conda activate` -> don't use deactivate just use `activate` to go to base
+
