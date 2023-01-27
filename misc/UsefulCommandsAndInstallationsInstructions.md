@@ -27,6 +27,7 @@
 * `docker-compose up` -> to start docker compose in non-detach mode
 * `docker-compose up -d` -> to start docker  compose in detached mode i.e without losing the terminal
 * `docker-compose stop` -> to close the containers 
+* `sudo docker info` -> to view docker information
 
 
 ## BASH / WINGW64
@@ -42,6 +43,9 @@
 * `cd ../..` -> to go up two directories
 * `cd ../../.my_eve/Scripts` -> to go up and into sub directories
 * `mkdir name_of_the_directory` -> to create a new directory/folder
+* `vim hello.py` -> Create a python file [ref:](https://www.jcchouinard.com/create-python-script-from-terminal/) 
+
+
 ### BASH commands for the csv file
 
 * `less yellow_tripdata_2021_01.csv` -> View few rows of the dataset
@@ -64,17 +68,17 @@
 * `pip install jupyter` -> to install jupyter notebook
 * `jupyter notebook` -> to open/start jupyter notebooks
 * `Ctrl + C` -> to close the terminal late
-* `vim hello.py` -> Create a python file [ref:](https://www.jcchouinard.com/create-python-script-from-terminal/) 
 
-# Useful resources
+
+## Useful resources
 * [Introduction to command line](https://missing.csail.mit.edu/)
 * [How to create terraform files from an existing cloud infrastructure.](https://arivictor.medium.com/turn-your-gcp-project-into-terraform-with-terraformer-cli-eeec36cbe0d8)
 * [Evaluation Criteria for the course](https://github.com/alexeygrigorev/mlbookcamp-code/blob/master/course-zoomcamp/cohorts/2022/projects.md#midterm-project)
 
-# Example Capstone Projects by previous cohorts
+## Example Capstone Projects by previous cohorts
 * [Earthquake Data Engineering capstone project by Nelson A](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone)
 
-# Ubuntu
+## Ubuntu
 * `htop` -> to check system configurations
 * `ssh -i path_to_private_key username_used_when_created_the_key@external_ip_of_vm` eg: `ssh -i ~/.ssh/gcp sanya@35.205.22.55`
 * `ssh de-zoomcamp` -> to ssh into the GCP VM after updating the .ssh config file
@@ -85,28 +89,30 @@
 * `gcloud --version` -> to check the gcloud SDK version on the VM
 * `wget url_to_download` -> to download a file/package from a url 
 * `bash path_to_.sh_file` -> to install the package downloaded
+* `mv file1_to_move /destination_folder_path` -> move file from one folder to another
+* `mkdir path_to_parent_dir/new_dir_name` -> to make a new directory
 
-## Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
+### Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
 * Step 1: Go to the folder on the local machine which has the file to be transfered
 * Step 2: Type `sftp ssh_hostname` this will connect you to the root folder in the VM server
 * Step 3: Navigate to the destination folder on the VM server
 * Step 4: Type `put name_of_the_file_to_transfer`
 
 
-# Git
+## Git
 * `git clone {https link}` -> Anonymously clone a git repo
 
-# GCP
+## GCP
 * `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
 
 
-# Conda
+## Conda
 * [How to activate base in conda](https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/02-working-with-environments/index.html#:~:text=Conda%20has%20a%20default%20environment,into%20your%20base%20software%20environment.)
 * `conda env list` -> List the conda environments
 * `$ conda remove --name my-first-conda-env --all` -> delete an entire environment
 * `conda remove --prefix /path/to/conda-env/ --all` -> If you wish to delete and environment that you created with a --prefix option, then you will need to provide the prefix again when removing the environment.
 
-## Creating Virtual env in conda in the project directory
+### Creating Virtual env in conda in the project directory
 * ` conda create --prefix ./.my_env_conda python=3.10.9 pip` -> Path to install the virtual env in the current project directory with pytho 3.10 and pip
 *  `conda activate .my_env_conda` - to activate the virtual env
 * `conda activate` -> don't use deactivate just use `activate` to go to base

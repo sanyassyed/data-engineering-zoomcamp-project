@@ -20,3 +20,18 @@
 
 # google environment credentials
 misc/blissful-flames-375219-24d8499e70a5.json
+**google_credentials.json
+
+# logs
+**logs/
+
+# environments
+**.env*
+
+# misc
+**__pycache__/
+.history
+**/ny_taxi_postgres_data/*
+serving_dir
+*.csv
+.ipynb_checkpoints/
