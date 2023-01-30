@@ -119,3 +119,10 @@
 *  `conda activate .my_env_conda` - to activate the virtual env
 * `conda activate` -> don't use deactivate just use `activate` to go to base
 
+## Ports
+* `netstat -ano | findStr "4200"`
+* `tasklist //FI "PID eq 3364"`
+* `TaskKill //PID 3364 //F`
+
+## Prefect
+* `CTRL + C` -> to stop orion
