@@ -35,3 +35,45 @@ misc/blissful-flames-375219-24d8499e70a5.json
 serving_dir
 *.csv
 .ipynb_checkpoints/
+
+
+# Predect .git ignore
+# prefect artifacts
+.prefectignore
+
+# python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+
+# Type checking artifacts
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# IPython
+profile_default/
+ipython_config.py
+*.ipynb_checkpoints/*
+
+# Environments
+.python-version
+.env
+.venv
+env/
+venv/
+
+
+# Dask
+dask-worker-space/
+
+# Editors
+.idea/
+.vscode/
+
+# VCS
+.git/
+.hg/

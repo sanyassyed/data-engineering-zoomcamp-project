@@ -8,7 +8,11 @@ USER root
 RUN apt-get update -qq && apt-get install vim -qqq
 # git gcc g++ -qqq
 
+#Changes made by sanya
 USER airflow
+# Change suggested by CaptainKoons
+#RUN usermod -a -G root airflow
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 USER root

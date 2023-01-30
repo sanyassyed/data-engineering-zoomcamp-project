@@ -26,7 +26,9 @@
 ### docker compose
 * `docker-compose up` -> to start docker compose in non-detach mode
 * `docker-compose up -d` -> to start docker  compose in detached mode i.e without losing the terminal
-* `docker-compose stop` -> to close the containers 
+* `docker-compose stop` -> to close the containers - use this if you don't want to delete the containers
+* `docker-compose down` ->  to shut down the container/s
+* `docker-compose down --volumes --rmi all` or  `docker-compose down --volumes --remove-orphans` -> To stop and delete containers, delete volumes with database data, and download images
 * `sudo docker info` -> to view docker information
 
 
