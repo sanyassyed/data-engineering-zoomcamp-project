@@ -126,3 +126,7 @@
 
 ## Prefect
 * `CTRL + C` -> to stop orion
+* `prefect block register -m prefect_gcp` -> to register a block from the prefect_gcp module
+* Configure the blocks by going to the blocks tab in the UI and selecting the corresponding block
+* `prefect orion start` -> open the open source UI to visually view the flows
+* `prefect config set PREFECT_API_URL="http://127.0.0.1:4200/api"` -> to configure Prefect to communicate with the server

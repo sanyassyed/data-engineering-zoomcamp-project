@@ -8,6 +8,7 @@
 # data files
 **/*.csv
 **/*.csv.gz
+**/*.parquet
 
 # virtual env
 .my_env/
