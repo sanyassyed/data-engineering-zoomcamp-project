@@ -54,6 +54,7 @@
 * `head -n 10 yellow_tripdata_2021-01.csv` -> View first 100 rows of the dataset 
 * `head -n 10 yellow_tripdata_2021-01.csv  > yelllow_head.csv` -> Copy first 100 rows of the dataset to a new file
 * `wc -l yellow_tripdata_2021-01.csv`-> Count number of rows in the dataset
+* `gzip -d -c .\tes.csv.gz | wc -l` -> Count the rows in the gzip file
 
 
 ### Setting Environment variables
@@ -130,3 +131,9 @@
 * Configure the blocks by going to the blocks tab in the UI and selecting the corresponding block
 * `prefect orion start` -> open the open source UI to visually view the flows
 * `prefect config set PREFECT_API_URL="http://127.0.0.1:4200/api"` -> to configure Prefect to communicate with the server
+* `prefect deployment build .\parametarized_flow.py:etl_parent_flow -n "Parameterized ETL"` -> build a deployment via cli `-n` means name of the flow
+* `prefect deployment build .\parametarized_flow.py:etl_parent_flow -n "etl2 --cron "0 0 * * *" -a` -> build a deployment via cli `-n` means name of the flow and `--cron` to set the cron job pattern and `-a` to apply that
+* `prefect deployment apply .\etl_parent_flow-deployment.yaml ` -> to apply the deployment
+* `prefect agent start --work-queue "default"` -> To execute flow runs from this deployment, start an agent that pulls work from the 'default' work queue
+* `prefect deployment build --help` -> to view how to set schedule via CLI on a deployment during build
+* `prefect deployment --help` -> to view how to set schedule for a given deployment

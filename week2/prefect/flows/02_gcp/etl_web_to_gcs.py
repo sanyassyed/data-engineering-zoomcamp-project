@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# coding: utf-8
 from pathlib import Path
 import pandas as pd
 from prefect import flow, task
@@ -34,6 +36,8 @@ def write_gcs(path: Path):
     return
 
 
+
+
 @flow()
 def etl_web_to_gcs() -> None:
     """The main ETL function"""
@@ -45,9 +49,11 @@ def etl_web_to_gcs() -> None:
 
     df = fetch(dataset_url)
     df_clean = clean(df)
-
     path = write_local(df_clean, color, dataset_file)
     write_gcs(path)
 
 if __name__== '__main__':
     etl_web_to_gcs()
+
+# Run the file from the `prefect` folder where the data folder resides
+# python /flows/02_gcp/etl_web_to_gcs.py
