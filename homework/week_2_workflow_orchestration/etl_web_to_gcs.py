@@ -78,8 +78,12 @@ if __name__=="__main__":
 # `prefect deployment build etl_web_to_gcs.py:etl_parent_flow -n "WebToGCS ETL" --cron "0 5 1 * *" --timezone "UTC" -a`
 
 # Option 2 - Schedule via UI
-# Build and Apply
+# Build and Apply - use this if you want add parameters after build to the .yaml file
 # `prefect deployment build etl_web_to_gcs.py:etl_parent_flow -n "WebToGCS ETL"`
 # `prefect deployment apply etl_parent_flow-deployment.yaml`
+
+# Q3
+# Parameters to use to load data to GCS
+# "color": "yellow", "months" :[2,3], "year": 2019
 
 

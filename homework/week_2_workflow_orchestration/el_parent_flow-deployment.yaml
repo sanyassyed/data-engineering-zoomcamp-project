@@ -1,9 +1,9 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'ParentFlow'
 ###
-name: WebToGCS ETL
+name: GcsToWeb EL
 description: The Parent flow that calls the sub flow to perform ETL for each month
-version: 786969ccdfcf58908182086ff0edc61b
+version: fdf95039217b1888cc88f9af6662d3ca
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -28,7 +28,7 @@ flow_name: ParentFlow
 manifest_path: null
 storage: null
 path: C:\Users\SANYA\Documents\PersonalProjects\Zoomcamp\data-engineering-zoomcamp-project\homework\week_2_workflow_orchestration
-entrypoint: etl_web_to_gcs.py:etl_parent_flow
+entrypoint: el_gcs_to_bq.py:el_parent_flow
 parameter_openapi_schema:
   title: Parameters
   type: object
