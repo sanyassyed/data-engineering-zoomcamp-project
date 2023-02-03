@@ -33,9 +33,13 @@
 ## Video 2.2.6 [Schedules & Docker Storage with Infrastructure](https://www.youtube.com/watch?v=psNSzqTsi-s&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=23)
 * How to schedule deployments either by Interval, Cron or RRule(Recurring rules).
 * CRON (* * * * * - Minutes Hour Day_Of_The_Month Month_Number Day_Of_The_Week ) Each star represents the following (Eg: 22 3 4 1 2 means At 03:22 AM on Tuesday or on day 4 of the month, only in January)
+* Three options for setting the schedule / scheduling:
+    * Option 1: You can set the CRON schedule via command line during build and apply as follows `prefect deployment build etl_web_to_gcs.py:etl_parent_flow -n "WebToGCS ETL" --cron "*/1 * * * *" -a` (Hint: use `prefect deployment build --help` for more info) [Documentation Link](https://docs.prefect.io/concepts/deployments/?h=prefect+deployment)
+    * Option 2: After build & apply via command line using `set-schedule` (Hint: use `prefect deployment --help` for more info)
+    * Option 3: After build and apply via Orion UI.
 * Prefect flows on Docker Container:
-    * Store our code on Docker Image. Build an image from the Dockerfile using the command `docker image build -t sanyasyed/prefect:zoom .`
-    * Put it up /Publish the Docker image on Docker Hub using the command `docker image push sanyasyed/prefect:zoom`
-    * Make a `Docker Container` block using the blocks tab in the Prefect Orion UI
-    * Run the Docker container and our flow code will be available there and from there we deploy our flow and run it via the container using the same steps as in video 2.2.5 but via a python file and cli (USing a python file to build, and apply the flow and then running it so the agent can catch it)
+* Store our code on Docker Image. Build an image from the Dockerfile using the command `docker image build -t sanyasyed/prefect:zoom .`
+* Put it up /Publish the Docker image on Docker Hub using the command `docker image push sanyasyed/prefect:zoom`
+* Make a `Docker Container` block using the blocks tab in the Prefect Orion UI
+* Run the Docker container and our flow code will be available there and from there we deploy our flow and run it via the container using the same steps as in video 2.2.5 but via a python file and cli (USing a python file to build, and apply the flow and then running it so the agent can catch it)
 

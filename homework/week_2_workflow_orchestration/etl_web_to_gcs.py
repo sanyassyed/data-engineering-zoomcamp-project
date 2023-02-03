@@ -5,9 +5,11 @@ import pandas as pd
 from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
 from random import randint
+from prefect.tasks import task_input_hash
+from datetime import timedelta
 
 
-@task(retries=3)
+@task(retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def fetch(dataset_url:str) -> pd.DataFrame:
     """Reads the dataset from the URL into pandas DF"""
     df=pd.read_csv(dataset_url, low_memory=False)
@@ -31,29 +33,35 @@ def write_to_gcs(path:Path) -> None:
     gcs_block.upload_from_path(from_path=path, to_path=Path(path).as_posix()) # To handle the backslash that is being changed when writing to GCS
     return 
 
-@flow(name='SubFlow', log_prints=True)
-def log_subflow(row_number:int) -> None:
+@flow(name='SubSubFlowLogging', log_prints=True)
+def log_sub_subflow(row_number:int) -> None:
+    """Logs the number of rows in the dataset beign writted to GCS"""
     print(f'Logging the number of rows in the dataset: {row_number}')
     return
 
-@flow(name='IngestFlow')
-def etl_web_to_gcs(color:str, month:int, year:int) -> None:
-    """Main EL Flow"""
+@flow(name='SubFlowIngest')
+def etl_subflow(color:str, month:int, year:int) -> None:
+    """Sub Flow performing main EL"""
     dataset_file = f'{color}_tripdata_{year}-{month:02}'
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
 
     df = fetch(dataset_url)
     path = write_local(df, dataset_file, color)
     row_number = df.shape[0]
-    log_subflow(row_number)
+    log_sub_subflow(row_number)
     write_to_gcs(path)
 
+@flow(name='ParentFlow')
+def etl_parent_flow(color:str='green', months:list[int]=[1,2], year:int=2021) -> None:
+    """The Parent flow that calls the sub flow to perform ETL for each month"""
+    for month in months:
+        etl_subflow(color, month, year)
 
 if __name__=="__main__":
     color = 'green'
-    month = 1
+    months = [1]
     year = 2020
-    etl_web_to_gcs(color, month, year)
+    etl_parent_flow(color, months, year)
 
 # Q1
 # Start prefect orion `prefect orion start`
@@ -65,4 +73,13 @@ if __name__=="__main__":
 #`gzip -d -c .\tes.csv.gz | wc -l`
 
 # Q2
-# Build and Deploy
+# Option 1 - Schedule via command line
+# Build & Schedule & Apply in 1 step
+# `prefect deployment build etl_web_to_gcs.py:etl_parent_flow -n "WebToGCS ETL" --cron "0 5 1 * *" --timezone "UTC" -a`
+
+# Option 2 - Schedule via UI
+# Build and Apply
+# `prefect deployment build etl_web_to_gcs.py:etl_parent_flow -n "WebToGCS ETL"`
+# `prefect deployment apply etl_parent_flow-deployment.yaml`
+
+
