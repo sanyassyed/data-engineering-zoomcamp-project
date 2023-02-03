@@ -52,7 +52,7 @@ def etl_subflow(color:str, month:int, year:int) -> None:
     write_to_gcs(path)
 
 @flow(name='ParentFlow')
-def etl_parent_flow(color:str='green', months:list[int]=[11], year:int=2020) -> None:
+def etl_parent_flow(color:str='green', months:list[int]=[6], year:int=2020) -> None:
     """The Parent flow that calls the sub flow to perform ETL for each month"""
     for month in months:
         etl_subflow(color, month, year)
