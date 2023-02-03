@@ -20,4 +20,6 @@ How many rows did your flow code process?
 
 
 ## Question 4. Github Storage Block
+How many rows were processed by the script?
 * Answer: 88,605
+* * Solution in file: [github_deploy.py](github_deploy.py)

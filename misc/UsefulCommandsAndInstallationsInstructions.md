@@ -137,3 +137,6 @@
 * `prefect agent start --work-queue "default"` -> To execute flow runs from this deployment, start an agent that pulls work from the 'default' work queue
 * `prefect deployment build --help` -> to view how to set schedule via CLI on a deployment during build
 * `prefect deployment --help` -> to view how to set schedule for a given deployment
+* `prefect deployment inspect <flow_name>/<deployment_name>` -> You can inspect a deployment using the CLI with the  command, referencing the deployment. This will show the yaml file
+* `prefect deployment ls` -> to view the list of deployments
+* `prefect deployment run <FLOW_NAME>/<DEPLOYMENT_NAME>` -> to run the deployment from CLI. You can also pass parameters here. Use --help for more info
