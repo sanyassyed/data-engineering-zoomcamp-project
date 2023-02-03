@@ -47,7 +47,7 @@ def el_parent_flow(color:str='green', months:list[int]=[1,2], year:int=2021) -> 
     for i, month in enumerate(months):
         table_rows = el_subflow(color, month, year)
         total_rows += table_rows
-        log_subflow(table_rows, total_rows, i)
+        log_subflow(table_rows, total_rows, i+1)
 
 if __name__=="__main__":
     color = 'green'
