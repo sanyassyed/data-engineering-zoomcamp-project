@@ -104,7 +104,8 @@
 
 ## Git
 * `git clone {https link}` -> Anonymously clone a git repo
-
+* `git log --all --oneline` -> List all the commits
+* `git show` -> to view the commit message for a specific commit.
 ## GCP
 * `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
 

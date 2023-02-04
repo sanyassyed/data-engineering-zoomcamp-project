@@ -27,6 +27,10 @@ How many rows were processed by the script?
 
 ## Question 5. Email or Slack notifications
 How many rows were processed by the script?
-* Answer:`514,392`
+* Answer: 514,392
     * ![Output Q4a](images/q5.JPG)
     * ![Output Q4b](images/notify.JPG)
+
+## Question 6. Secrets
+How many characters are shown as asterisks (*) on the next page of the UI?
+* Answer: 8
