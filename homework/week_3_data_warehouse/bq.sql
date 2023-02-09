@@ -7,7 +7,7 @@ OPTIONS (
   uris = ['gs://dtc_data_lake_blissful-flames-375219/data_hw/tripdata_2019-*.csv.gz']
 );
 
--- Create a table from the external table
+-- Create a BQ table from the external table
 CREATE OR REPLACE TABLE  `blissful-flames-375219.tripdata_hw.fhv_tripdata` AS
 SELECT * FROM `blissful-flames-375219.tripdata_hw.external_fhv_tripdata`;
 
@@ -22,9 +22,6 @@ SELECT DISTINCT(Affiliated_base_number) FROM `blissful-flames-375219.tripdata_hw
 SELECT DISTINCT(Affiliated_base_number) FROM `blissful-flames-375219.tripdata_hw.fhv_tripdata`;
 -- Answer: - 0 MB for the External Table and 317.94MB for the BQ Table 
 
--- Count how many records are there for all distinct affiliated base numbers
-SELECT DISTINCT(Affiliated_base_number), COUNT(1) FROM `blissful-flames-375219.tripdata_hw.fhv_tripdata`
-GROUP BY Affiliated_base_number;
 
 -- Question 3:
 -- How many records have both a blank (null) PUlocationID and DOlocationID in the entire dataset?
@@ -33,26 +30,14 @@ WHERE PULocationID IS NULL AND
 DOLocationID IS NULL;
 -- Answer:717,748
 
--- Counting from all tables in the dataset
-WITH all_tables as 
-(
-SELECT PULocationID, DOLocationID FROM `blissful-flames-375219.tripdata_hw.external_fhv_tripdata` a
-WHERE a.PULocationID IS NULL AND a.DOLocationID IS NULL
-UNION ALL
-SELECT PULocationID, DOLocationID FROM `blissful-flames-375219.tripdata_hw.fhv_tripdata` b
-WHERE b.PULocationID IS NULL AND b.DOLocationID IS NULL
-)
-SELECT COUNT(1) FROM all_tables; --1435496
-
---SELECT * FROM `blissful-flames-375219.tripdata_hw`.INFORMATION_SCHEMA.PARTITIONS;
-
 -- Question 4
 -- What is the best strategy to optimize the table if query always filter by pickup_datetime and order by affiliated_base_number?
 -- Answer: Partition by pickup_datetime Cluster on affiliated_base_number
 
 -- Question 5
 --Implement the optimized solution you chose for question 4. Write a query to retrieve the distinct affiliated_base_number between pickup_datetime 2019/03/01 and 2019/03/31. Use the BQ table you created earlier in your from clause and note the estimated bytes. Now change the table in the from clause to the partitioned table you created for question 4 and note the estimated bytes processed. What are these values? Choose the answer which most closely matches.
--- cluster and partition
+
+-- partition & cluster
 CREATE OR REPLACE TABLE `blissful-flames-375219.tripdata_hw.fhv_tripdata_partitioned_clustered` 
 PARTITION BY DATE(pickup_datetime)
 CLUSTER BY Affiliated_base_number AS
@@ -63,7 +48,6 @@ SELECT DISTINCT(Affiliated_base_number)
 FROM `blissful-flames-375219.tripdata_hw.fhv_tripdata_partitioned_clustered`
 WHERE DATE(pickup_datetime) BETWEEN '2019-03-01' AND '2019-03-31'; 
 -- 23.05
-
 
 -- Select distinct affiliated base number from fhv_tripdata table
 SELECT DISTINCT(Affiliated_base_number) 
