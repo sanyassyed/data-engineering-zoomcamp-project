@@ -1,4 +1,4 @@
-# Week 2: Workflow Orchestration - Prefect
+# Week 2: Workflow Orchestration - Prefect Notes
 
 ## Video 2.2.2 [Introduction to Prefect Concepts](https://www.youtube.com/watch?v=cdtN6dhp708&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=19)
 1. Run Docker-Compose to start a Postgres & PgAdmin container on the same network (with the postgres 5432 port exposed for data push and pull from local system inot/out of Postgres)

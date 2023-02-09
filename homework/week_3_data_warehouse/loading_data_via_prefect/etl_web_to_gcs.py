@@ -12,27 +12,24 @@ from datetime import timedelta
 @task(retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def fetch(dataset_url:str) -> pd.DataFrame:
     """Reads the dataset from the URL into pandas DF"""
-    df=pd.read_csv(dataset_url, low_memory=False)
+    df=pd.read_csv(dataset_url, low_memory=False, encoding='latin1')
     return df
 
 @task(log_prints=True)
-def clean(df:pd.DataFrame, color:str) -> pd.DataFrame:
+def clean(df:pd.DataFrame) -> pd.DataFrame:
     """Fix some dtype issues"""
-    if color == 'yellow':
-        df['tpep_pickup_datetime'] = pd.to_datetime(df['tpep_pickup_datetime'])
-        df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'])
-    else:
-        df['lpep_pickup_datetime'] = pd.to_datetime(df['lpep_pickup_datetime'])
-        df['lpep_dropoff_datetime'] = pd.to_datetime(df['lpep_dropoff_datetime'])
+    df.columns = ['dispatching_base_num', 'pickup_datetime', 'dropoff_datetime', 'PULocationID', 'DOLocationID', 'SR_Flag', 'Affiliated_base_number']
+    df['dropoff_datetime'] = pd.to_datetime(df['dropoff_datetime'])
+    df['pickup_datetime'] = pd.to_datetime(df['pickup_datetime'])
     return df
 
 @task(retries=3)
-def write_local(df: pd.DataFrame, dataset_file:str, color:str) -> Path:
+def write_local(df: pd.DataFrame, dataset_file:str) -> Path:
     # make output directory if it does not exist
-    output_dir = Path(f'data/{color}')
+    output_dir = Path(f'data_hw')
     output_dir.mkdir(parents=True, exist_ok=True)
-    path = Path(f"{output_dir}/{dataset_file}.parquet")
-    df.to_parquet(path, compression="gzip")
+    path = Path(f"{output_dir}/{dataset_file}.csv.gz")
+    df.to_csv(path, compression="gzip", encoding='utf-8')
     return path
 
 
@@ -44,35 +41,35 @@ def write_to_gcs(path:Path) -> None:
     return 
 
 @flow(name='SubSubFlowLogging', log_prints=True)
-def log_sub_subflow(row_number:int) -> None:
+def log_sub_subflow(row_number:int, month:int, year:int) -> None:
     """Logs the number of rows in the dataset beign writted to GCS"""
-    print(f'Logging the number of rows in the dataset: {row_number}')
+    print(f'Logging the number of rows in the dataset for the month {month} in the year {year}: {row_number}')
     return
 
 @flow(name='SubFlowIngest')
-def etl_subflow(color:str, month:int, year:int) -> None:
+def etl_subflow(month:int, year:int) -> None:
     """Sub Flow performing main EL"""
-    dataset_file = f'{color}_tripdata_{year}-{month:02}'
-    dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
+    dataset_file = f'tripdata_{year}-{month:02}'
+    dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhv/fhv_{dataset_file}.csv.gz"
 
     df = fetch(dataset_url)
-    df = clean(df, color)
-    path = write_local(df, dataset_file, color)
+    df = clean(df)
+    path = write_local(df, dataset_file)
     row_number = df.shape[0]
-    log_sub_subflow(row_number)
+    log_sub_subflow(row_number, month, year)
     write_to_gcs(path)
 
 @flow(name='ParentFlow')
-def etl_parent_flow(color:str='green', months:list[int]=[6], year:int=2020) -> None:
+def etl_parent_flow(months:list[int]=[1], years:list[int]=[2019, 2020]) -> None:
     """The Parent flow that calls the sub flow to perform ETL for each month"""
-    for month in months:
-        etl_subflow(color, month, year)
+    for year in years:
+        for month in months:
+            etl_subflow(month, year)
 
 if __name__=="__main__":
-    color = 'green'
-    months = [7]
-    year = 2020
-    etl_parent_flow(color, months, year)
+    months = [1]
+    years = [2019, 2020]
+    etl_parent_flow(months, years)
 
 # Q1
 # Start prefect orion `prefect orion start`
@@ -97,4 +94,8 @@ if __name__=="__main__":
 # Parameters to use to load data to GCS
 # "color": "yellow", "months" :[2,3], "year": 2019
 
-
+# EDA Useful functions in Pandas
+# df.shape
+# df.info()
+# df.describe(include='all').T
+# df.dtypes

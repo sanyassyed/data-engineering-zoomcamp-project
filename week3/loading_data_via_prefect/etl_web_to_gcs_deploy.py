@@ -12,8 +12,10 @@ from prefect.orion.schemas.schedules import CronSchedule
 #local_dep = Deployment.build_from_flow(flow = etl_parent_flow, name='WebToGcs ETL via Python-Q3', work_queue_name="default", entrypoint="etl_web_to_gcs.py:etl_parent_flow", parameters={"color":"yellow", "months":[2, 3], "year":2019})
 
 # Deployment for Q5 Step 1 Loading data to GCS from the web
-local_dep = Deployment.build_from_flow(flow = etl_parent_flow, name='WebToGcs ETL via Python-Q5', work_queue_name="default", entrypoint="etl_web_to_gcs.py:etl_parent_flow", parameters={"color":"green", "months":[4], "year":2019})
+#local_dep = Deployment.build_from_flow(flow = etl_parent_flow, name='WebToGcs ETL via Python-Q5', work_queue_name="default", entrypoint="etl_web_to_gcs.py:etl_parent_flow", parameters={"color":"green", "months":[4], "year":2019})
 
+# Deployment for Working on Data Warehouse for next week- Loading data to GCS from the web yellow taxi data for 2019 & 2020
+local_dep = Deployment.build_from_flow(flow = etl_parent_flow, name='WebToGcs ETL via Python Wk 4 CSV', work_queue_name="week4", entrypoint="etl_web_to_gcs.py:etl_parent_flow", parameters={"color":"yellow", "months":[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "year":2020})
 
 
 if __name__=="__main__":

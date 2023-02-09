@@ -31,8 +31,8 @@ def write_local(df: pd.DataFrame, dataset_file:str, color:str) -> Path:
     # make output directory if it does not exist
     output_dir = Path(f'data/{color}')
     output_dir.mkdir(parents=True, exist_ok=True)
-    path = Path(f"{output_dir}/{dataset_file}.parquet")
-    df.to_parquet(path, compression="gzip")
+    path = Path(f"{output_dir}/{dataset_file}.csv.gz")
+    df.to_csv(path, compression="gzip")
     return path
 
 
