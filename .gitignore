@@ -2,9 +2,6 @@
 **/.ipynb_checkpoints/
 
 
-# data folder
-**/ny_taxi_postgres_data/
-
 # data files
 **/*.csv
 **/*.csv.gz
