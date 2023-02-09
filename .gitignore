@@ -29,7 +29,7 @@ misc/blissful-flames-375219-24d8499e70a5.json
 # misc
 **__pycache__/
 .history
-**/ny_taxi_postgres_data/*
+#**/ny_taxi_postgres_data/*
 serving_dir
 *.csv
 .ipynb_checkpoints/
