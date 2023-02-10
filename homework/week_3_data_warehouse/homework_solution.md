@@ -1,5 +1,5 @@
 -- Initial setup
-
+-- Created a new dataset called `tripdata_hw` with the same region as the project
 -- Creating external table
 CREATE OR REPLACE EXTERNAL TABLE `blissful-flames-375219.tripdata_hw.external_fhv_tripdata`
 OPTIONS (
@@ -79,3 +79,29 @@ WHERE DATE(pickup_datetime) BETWEEN '2019-03-01' AND '2019-03-31';
 -- Question 7:
 -- It is best practice in Big Query to always cluster your data:
 -- Answer: False
+
+
+-- Question 8
+-- Parquet
+-- Initial setup
+
+-- Creating external table
+CREATE OR REPLACE EXTERNAL TABLE `blissful-flames-375219.tripdata_hw.external_ft_parquet` 
+(dispatching_base_num	STRING, 
+pickup_datetime	TIMESTAMP, 
+dropoff_datetime	TIMESTAMP, 
+PULocationID INT64, 
+DOLocationID	INT64, 
+SR_Flag	INT64,		
+Affiliated_base_number	STRING)
+OPTIONS (
+  format = 'PARQUET',
+  uris = ['gs://dtc_data_lake_blissful-flames-375219/data_hw_parquet/tripdata_2019-*.parquet',
+  'gs://dtc_data_lake_blissful-flames-375219/data_hw_parquet/tripdata_2020-*.parquet']
+);
+
+-- specifying datatypes for columns
+-- (dispatching_base_num	STRING, pickup_datetime	TIMESTAMP, dropoff_datetime	TIMESTAMP, PULocationID FLOAT64, DOLocationID	FLOAT64, SR_Flag	INT64,		Affiliated_base_number	STRING)
+-- Create a table from the external table
+CREATE OR REPLACE TABLE  `blissful-flames-375219.tripdata_hw.ft_parquet` AS
+SELECT * FROM `blissful-flames-375219.tripdata_hw.external_ft_parquet`;
