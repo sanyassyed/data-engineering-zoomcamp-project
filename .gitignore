@@ -12,6 +12,7 @@
 
 # miscellaneous files
 ~$*
+temp/*
 
 # environment variable
 **/*.bashrc
