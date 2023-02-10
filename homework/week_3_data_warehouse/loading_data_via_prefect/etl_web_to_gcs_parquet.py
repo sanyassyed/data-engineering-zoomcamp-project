@@ -13,7 +13,7 @@ import pyarrow as pa
 @task(retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def fetch(dataset_url:str) -> pd.DataFrame:
     """Reads the dataset from the URL into pandas DF"""
-    df=pd.read_csv(dataset_url, low_memory=False, encoding='latin1')
+    df=pd.read_csv(dataset_url, encoding='latin1', engine='pyarrow')
     return df
 
 @task(log_prints=True)
@@ -38,7 +38,7 @@ def write_local(df: pd.DataFrame, dataset_file:str) -> Path:
     output_dir = Path(f'data_hw_parquet')
     output_dir.mkdir(parents=True, exist_ok=True)
     path = Path(f"{output_dir}/{dataset_file}.parquet")
-    df.to_parquet(path, compression="gzip")
+    df.to_parquet(path, compression="gzip", engine='pyarrow')
     return path
 
 
