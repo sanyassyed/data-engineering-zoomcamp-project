@@ -1,4 +1,4 @@
-# Week 2: Data Warehouse Notes
+# Week 3: Data Warehouse Notes
  [All video slides are here](https://docs.google.com/presentation/d/1a3ZoBAXFk8-EhUsd7rAZd-5p_HpltkzSeujjRGB2TAI/edit#slide=id.p)
 
 ## Video 3.1.1 [Data Warehouse and BigQuery](https://www.youtube.com/watch?v=jrHljAoD6nM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=25)

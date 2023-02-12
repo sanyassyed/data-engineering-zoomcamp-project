@@ -141,3 +141,8 @@
 * `prefect deployment inspect <flow_name>/<deployment_name>` -> You can inspect a deployment using the CLI with the  command, referencing the deployment. This will show the yaml file
 * `prefect deployment ls` -> to view the list of deployments
 * `prefect deployment run <FLOW_NAME>/<DEPLOYMENT_NAME>` -> to run the deployment from CLI. You can also pass parameters here. Use --help for more info
+
+## Google VM
+* `ssh de-zoomcoamp` -> to ssh in to the VM on GCP
+* `gcloud auth login` -> to authenticate the VM to login into the project optionally try if you get error `gcloud auth application-default login` Then copy pase the code
+* `gsutil mv gs://dtc_data_lake_blissful-flames-375219/data/green/ gs://dtc_data_lake_blissful-flames-375219/data_parquet` -> to move files in GCS
