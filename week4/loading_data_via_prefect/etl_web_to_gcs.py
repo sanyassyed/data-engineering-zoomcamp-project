@@ -13,7 +13,7 @@ import pyarrow as pa
 @task(retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
 def fetch(dataset_url:str) -> pd.DataFrame:
     """Reads the dataset from the URL into pandas DF"""
-    if 'fhv_tripdata_2020-01' in dataset_url:
+    if 'fhv' in dataset_url:
         df=pd.read_csv(dataset_url, encoding='latin1')
     # causes error for fhv file 2020 Jan so removed pyarrow
     else:
@@ -30,7 +30,7 @@ def clean_fhv(df:pd.DataFrame) -> pd.DataFrame:
     # Change the dtypes setting so int values can be 0
     df = df.convert_dtypes()
     # define datatypes of other columns
-    df = df.astype({'dispatching_base_num': 'string', 
+    df = df.astype({'dispatching_base_num':'string', 
                 'PULocationID': 'Int64',
                 'DOLocationID': 'Int64',
                 'SR_Flag': 'Int64',
@@ -74,7 +74,13 @@ def write_local(df: pd.DataFrame, dataset_file:str, ftype:str, taxi_cat:str) -> 
     output_dir = Path(f'data/{data_fol}/{taxi_cat}')
     output_dir.mkdir(parents=True, exist_ok=True)
     path = Path(f"{output_dir}/{dataset_file}.{ftype}.gz")
-    df.to_parquet(path, compression="gzip", engine='pyarrow')
+    if ftype == 'parquet':
+        if 'fhv' in dataset_file:
+            df.to_parquet(path, compression="gzip")
+        else:
+            df.to_parquet(path, compression="gzip", engine='pyarrow')
+    else:
+        df.to_csv(path, compression="gzip")
     return path
 
 
