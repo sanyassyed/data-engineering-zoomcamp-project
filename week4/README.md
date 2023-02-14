@@ -9,3 +9,5 @@
 
 * Note: DBT Cloud setting: Settings
 dbt Cloud will always connect to your warehouse from `52.45.144.63`, `54.81.134.249`, or `52.22.161.231`. Make sure to allow inbound traffic from these IPs in your firewall, and include it in any database grants. 
+
+* Dbt Cloud: to build the dbt project in a particular directory, specify the directory in the sub directory. For example here I specified the sub-directory as `/week4/ny_taxi_rides_zoomcamp/` and when dbt initialized the project all the initialization happened in this directory. [Ref](https://www.youtube.com/watch?v=6zDTbM6OUcs)
