@@ -33,7 +33,7 @@ select
     cast(congestion_surcharge as numeric) as congestion_surcharge
 	
 from {{ source('staging', 'yellow_tripdata') }}
-where VendorID is not null
+--where VendorID is not null
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'
 {% if var('is_test_run', default=true) %}
