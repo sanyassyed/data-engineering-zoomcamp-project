@@ -6,13 +6,13 @@ with trips_data as (
 select 
 -- Revenue grouping
 pickup_zone as revenue_zone,
-date_trunc(pickup_datetime, month) as revenue_month
+date_trunc(pickup_datetime, month) as revenue_month,
 --Note: For postgres use instead: date_trunc('month', pickup_datetime) as revenue_month, 
 
 service_type,
 
 -- Revenue calculation
-sum(fare_amount) as revenue_monthly fare,
+sum(fare_amount) as revenue_monthly_fare,
 sum(extra) as revenue_monthly_extra,
 sum(mta_tax) as revenue_monthly_mta_tax,
 sum(tip_amount) as revenue_monthly_tip_amount,
