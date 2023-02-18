@@ -146,3 +146,8 @@
 * `ssh de-zoomcoamp` -> to ssh in to the VM on GCP
 * `gcloud auth login` -> to authenticate the VM to login into the project optionally try if you get error `gcloud auth application-default login` Then copy pase the code
 * `gsutil mv gs://dtc_data_lake_blissful-flames-375219/data/green/ gs://dtc_data_lake_blissful-flames-375219/data_parquet` -> to move files in GCS
+
+## dbt
+* `dbt run`
+* `dbt run --select stg_green_tripdata`
+* `dbt run -m stg_green_tripdata`
