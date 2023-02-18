@@ -1,4 +1,4 @@
-# Week 4: Analytics Engineering Notes
+# Week 4: Analytics Engineering Notes by sanya
 * `dbt` -> data build tool (Helps with the transformation of data)
 *  `Defining a  Deployment Workflow`-> Develop -> Test and Document -> Deployment (Version control and CI/CD)
 * dbt Core & dbt Cloud
