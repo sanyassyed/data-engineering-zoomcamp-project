@@ -104,9 +104,21 @@
             
 ```
 ## NOTE:
-* Use `dbt run` to test then model locally
-* Use `dbt build` to build the model
+* Use `dbt run` runs the model does not run seed
+* Use `dbt build` = runs 'seed', 'tests' and 'models'
 
 ## Errors:
-* During Production / Deployment the job was failing; this was because I had not specified the custom branch I had created a new branch called 'week4_dbt' rather than main
+* Production / Deployment error: Make sure you have merged the development with the main branch by giving a pull request. This because the production dbt pulls data directly from the main branch on git
+
+* When using a sub folder During Production / Deployment the job was failing; this was because I had not specified the custom branch I had created a new branch called 'week4_dbt' rather than main
 Soln: Specify the custom branch in both the Development and Production Environment setup 
+
+* `Bad int64 value: 0.0` error: Some ehail fees are null and casting them to integer gives Bad int64 value: 0.0 error, hence using safe_cast returns NULL instead of throwing an error. Hence use safe_cast from dbt_utils function in the jinja code for casting.
+Run this command in SQL to test and understanf this `SELECT cast('' as INTEGER)`
+    
+* `'is_test_run: false'` : remeber to give it in single codes and space between colon and false
+
+* Looker Error: BigQuery error: Failed to parse input string "256" 
+Soln: Build your green and yellow tables in trips_data_all dataset using partitions by tpep_pickup_datetime/lpep_pickup_datetime
+
+* De-duplication using `over partition by` clause
