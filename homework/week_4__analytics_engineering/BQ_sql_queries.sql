@@ -14,3 +14,6 @@ WHERE DATE(pickup_datetime) BETWEEN '2019-01-01' AND '2019-12-31';
 SELECT COUNT(*) FROM `blissful-flames-375219.production.fact_fhv_trips` 
 WHERE DATE(pickup_datetime) BETWEEN '2019-01-01' AND '2019-12-31';
 --22998722 (same answer with and without the where clause in stg_fhv_tripdata model)
+
+-- Link to report on Looker Studio:
+-- https://lookerstudio.google.com/s/tOiJl_aoyp0
