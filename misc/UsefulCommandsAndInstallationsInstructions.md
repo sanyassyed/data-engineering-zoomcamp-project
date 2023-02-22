@@ -95,19 +95,33 @@
 * `mv file1_to_move /destination_folder_path` -> move file from one folder to another
 * `mkdir path_to_parent_dir/new_dir_name` -> to make a new directory
 
+
+## Google VM
+* `ssh de-zoomcoamp` -> to ssh in to the VM on GCP
+* `gcloud auth login` -> to authenticate the VM to login into the project optionally try if you get error `gcloud auth application-default login` Then copy pase the code
+* `gsutil mv gs://dtc_data_lake_blissful-flames-375219/data/green/ gs://dtc_data_lake_blissful-flames-375219/data_parquet` -> to move files in GCS
+* `echo $PATH` -> To view the path varibles
+* `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
+* `nano <file_name>` -> to edit a file
+* `CTRL + O` -> to save
+* `Ctrl + X` -> to exit
+
+
 ### Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
 * Step 1: Go to the folder on the local machine which has the file to be transfered
 * Step 2: Type `sftp ssh_hostname` this will connect you to the root folder in the VM server
 * Step 3: Navigate to the destination folder on the VM server
-* Step 4: Type `put name_of_the_file_to_transfer`
+* Step 4: Type `put name_of_the_file_to_transfer` 
+* To transfer from remote to local:
+    - `get name_of_the_file_to_transfer` -> to transfer a file
+    - `get -r name_of_the_file_to_transfer` -> to transfer a folder
 
 
 ## Git
 * `git clone {https link}` -> Anonymously clone a git repo
 * `git log --all --oneline` -> List all the commits
 * `git show` -> to view the commit message for a specific commit.
-## GCP
-* `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
+
 
 
 ## Conda
@@ -142,12 +156,13 @@
 * `prefect deployment ls` -> to view the list of deployments
 * `prefect deployment run <FLOW_NAME>/<DEPLOYMENT_NAME>` -> to run the deployment from CLI. You can also pass parameters here. Use --help for more info
 
-## Google VM
-* `ssh de-zoomcoamp` -> to ssh in to the VM on GCP
-* `gcloud auth login` -> to authenticate the VM to login into the project optionally try if you get error `gcloud auth application-default login` Then copy pase the code
-* `gsutil mv gs://dtc_data_lake_blissful-flames-375219/data/green/ gs://dtc_data_lake_blissful-flames-375219/data_parquet` -> to move files in GCS
-
 ## dbt
 * `dbt run`
 * `dbt run --select stg_green_tripdata`
 * `dbt run -m stg_green_tripdata`
+
+
+## Spark
+* `spark-shell` - to start spark in linux CLI
+* `which java` -> to check if java is installed and where
+* `which pyspark` -> to check if pyspark is installed and where

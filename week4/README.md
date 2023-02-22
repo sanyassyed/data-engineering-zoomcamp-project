@@ -1,4 +1,6 @@
 # Week 4: Analytics Engineering Notes
+## [dbt account here](https://cloud.getdbt.com/deploy/147923/projects/219111/environments)
+
 * `dbt` -> data build tool (Helps with the transformation of data)
 *  `Defining a  Deployment Workflow`-> Develop -> Test and Document -> Deployment (Version control and CI/CD)
 * dbt Core & dbt Cloud
@@ -113,8 +115,8 @@
 * When using a sub folder During Production / Deployment the job was failing; this was because I had not specified the custom branch I had created a new branch called 'week4_dbt' rather than main
 Soln: Specify the custom branch in both the Development and Production Environment setup 
 
-* `Bad int64 value: 0.0` error: Some ehail fees are null and casting them to integer gives Bad int64 value: 0.0 error, hence using safe_cast returns NULL instead of throwing an error. Hence use safe_cast from dbt_utils function in the jinja code for casting.
-Run this command in SQL to test and understanf this `SELECT cast('' as INTEGER)`
+* `Bad int64 value: 0.0` error: Some ehail fees are null and casting them to integer gives Bad int64 value: 0.0 error, hence using safe_cast returns NULL instead of throwing an error. So use safe_cast from dbt_utils function in the jinja code for casting.
+Run this command in SQL to test and understand this `SELECT cast('' as INTEGER)`
     
 * `'is_test_run: false'` : remeber to give it in single codes and space between colon and false
 
