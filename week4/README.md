@@ -1,6 +1,14 @@
 # Week 4: Analytics Engineering Notes
-## [dbt account here](https://cloud.getdbt.com/deploy/147923/projects/219111/environments)
 
+## ***Note***:
+* [dbt account here](https://cloud.getdbt.com/deploy/147923/projects/219111/environments)
+* dbt Cloud project repo: [ny_taxi_rides_zoomcamp](https://github.com/sanyassyed/ny_taxi_rides_zoomcamp)
+
+## What is dbt?
+dbt Core is an open-source tool that enables data teams to transform data using analytics engineering best practices. 
+dbt is an open-source command line tool that helps analysts and engineers transform data in their warehouse more effectively. 
+
+## Lesson Introduction
 * `dbt` -> data build tool (Helps with the transformation of data)
 *  `Defining a  Deployment Workflow`-> Develop -> Test and Document -> Deployment (Version control and CI/CD)
 * dbt Core & dbt Cloud
@@ -10,7 +18,7 @@
 
 ## Step 1 : Start dbt project on dbt Cloud
 ### DBT Cloud Settings
-* Note:dbt Cloud will always connect to your warehouse from `52.45.144.63`, `54.81.134.249`, or `52.22.161.231`. Make sure to allow inbound traffic from these IPs in your firewall, and include it in any database grants. 
+* Note: dbt Cloud will always connect to your warehouse from `52.45.144.63`, `54.81.134.249`, or `52.22.161.231`. Make sure to allow inbound traffic from these IPs in your firewall, and include it in any database grants. 
 
 * Sub-Directory: to build the dbt project in a particular directory, specify the directory in the sub directory. For example here I specified the sub-directory as `/week4/ny_taxi_rides_zoomcamp/` and when dbt initialized the project all the initialization happened in this directory. [Ref](https://www.youtube.com/watch?v=6zDTbM6OUcs)
 
@@ -19,8 +27,13 @@
 
 * Then push to a new branch and work on this part of the project on this branch
 
-## Step 2 - Create 2 models `stg_green_tripdata`, `stg_yellow_tripdata` in the staging folder (Initialize and create a basic view for green taxi data:)
-* Initialize the project in the folder `ny_taxi_rides_zoomcamp`; this will create new folders and files
+## Step 2 - Create two models to build views
+
+`stg_green_tripdata`, `stg_yellow_tripdata` in the staging folder (Initialize and create a basic view for green taxi data:)
+
+Initialize the project in the folder `ny_taxi_rides_zoomcamp`; this will create new folders and files.
+
+
 1. Basic model for creating view using `FROM`
     * Modify `dbt_project.yml` by changing the `name` and `models` property 
     * Define the source and create the first model. Create `models/staging/schema.yml` and specify the `source` as `staging`, `project name` as `BQ project name`, `dataset name` as `trips_data_all` and t`able names` as `green_tripdata` & `yellow_tripdata ` and save
@@ -52,7 +65,9 @@
  * Copy the sql code same as stg_green_tripdata.sql but change the values for certain columns and the table name in the from source.
 6. Run both the models using the `dbt run --var 'is_test_run: false'` command
 
-## Creating 3rd Model called `dim_zones` in the core folder
+## Creating Third Model to build table
+`dim_zones` in the core folder
+
 ### Creating a seed
 * Mainly used for data that might not change very often
 * Get the `taxi_zone_lookup.csv` file in the `seed` folder either 
@@ -67,7 +82,8 @@
         1. Define config as table
         2. Select everything from the `taxi_zone_lookup`; (modify the service zone) using `ref` jinja function with the seed name to refer to the seed
 
-## Creatin 4th model fact_trips.sql and building it
+## Creating fourth model to build fact table
+`fact_trips.sql` and building it
 * This model unions the data from `stg_green_tripdata` model & `stg_yellow_tripdata` model and joins it to the data from `dim_zones` model to extract the zone data.
 
 * Run all of these using    
@@ -85,7 +101,8 @@
     6. relationships
 
 * .yml file structure:
-``` models:
+```yml
+    models:
         - name:
           description: >
           columns:
@@ -102,12 +119,11 @@
                 - relationships:
                     to:
                     field:
-                    severity: 
-            
+                    severity:            
 ```
-## NOTE:
-* Use `dbt run` runs the model does not run seed
-* Use `dbt build` = runs 'seed', 'tests' and 'models'
+## Useful Commands:
+* Use `dbt run` -> runs the model does not run seed
+* Use `dbt build` -> runs 'seed', 'tests' and 'models'
 
 ## Errors:
 * Production / Deployment error: Make sure you have merged the development with the main branch by giving a pull request. This because the production dbt pulls data directly from the main branch on git

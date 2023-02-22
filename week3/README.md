@@ -1,6 +1,9 @@
 # Week 3: Data Warehouse Notes
  [All video slides are here](https://docs.google.com/presentation/d/1a3ZoBAXFk8-EhUsd7rAZd-5p_HpltkzSeujjRGB2TAI/edit#slide=id.p)
 
+## What is BigQuery?
+BigQuery is Google's fully managed, serverless ***data warehouse*** that enables scalable analysis over petabytes of data. It is a Platform as a Service that supports querying using ANSI SQL.
+
 ## Video 3.1.1 [Data Warehouse and BigQuery](https://www.youtube.com/watch?v=jrHljAoD6nM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=25)
 * All SQL queries used in this video are stored in `big_query.sql` file [also available at `bigquery_video1` in the `Project Queries` in the Big Query Platform]
 * Big query structure:

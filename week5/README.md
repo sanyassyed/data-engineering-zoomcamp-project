@@ -25,3 +25,16 @@
     2. Install Spark
 
 * Goto the localhost forwarded port 4040 to view the spark jobs being executed by spark master
+
+* Useful Codes
+    - To run pyspark in the VM
+    ```bash
+    export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+    export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:$PYTHONPATH"
+    ```
+
+* Why use Spark over DataWarehouse SQL? 
+    - In Spark you can write your own functions and hence it is more flexible. 
+    - Also many inbuilt functions are available.
+    - We can do tests and make sure your code works and then execute it on your dataframe
+    - Things that are not easy to execute in SQL can be easily done spark

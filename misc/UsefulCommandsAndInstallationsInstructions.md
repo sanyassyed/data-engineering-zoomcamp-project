@@ -91,6 +91,8 @@
 * `source .bashrc` -> to logout and and login / will reevaluate the installations and update the VM so you don't have to logout and login after installing something new on the VM 
 * `gcloud --version` -> to check the gcloud SDK version on the VM
 * `wget url_to_download` -> to download a file/package from a url 
+* `wget url_to_download -O <output_file_name>` -> to download a file/package from a url ans saved with a new filename
+* `wget url_to_download -P <output_directory>` -> to download a file/package from a url
 * `bash path_to_.sh_file` -> to install the package downloaded
 * `mv file1_to_move /destination_folder_path` -> move file from one folder to another
 * `mkdir path_to_parent_dir/new_dir_name` -> to make a new directory

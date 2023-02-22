@@ -1,0 +1,5 @@
+# spark data files
+data/
+._SUCCESS*
+.part*
+_SUCCESS*
