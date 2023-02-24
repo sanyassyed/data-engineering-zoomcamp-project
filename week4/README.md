@@ -1,8 +1,9 @@
 # Week 4: Analytics Engineering Notes
 
 ## ***Note***:
-* [dbt account here](https://cloud.getdbt.com/deploy/147923/projects/219111/environments)
+
 * dbt Cloud project repo: [ny_taxi_rides_zoomcamp](https://github.com/sanyassyed/ny_taxi_rides_zoomcamp)
+* [dbt account here](https://cloud.getdbt.com/deploy/147923/projects/219111/environments)
 
 ## What is dbt?
 dbt Core is an open-source tool that enables data teams to transform data using analytics engineering best practices. 

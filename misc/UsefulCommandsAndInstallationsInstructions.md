@@ -116,7 +116,7 @@
 * Step 4: Type `put name_of_the_file_to_transfer` 
 * To transfer from remote to local:
     - `get name_of_the_file_to_transfer` -> to transfer a file
-    - `get -r name_of_the_file_to_transfer` -> to transfer a folder
+    - `get -r name_of_the_folder_to_transfer` -> to transfer a folder
 
 
 ## Git
