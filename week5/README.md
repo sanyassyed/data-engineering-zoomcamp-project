@@ -23,9 +23,33 @@
         7. Perform the path checks using the following commands
         `which java`
         `java --version`
+        
+            - 
     
     2. Install Spark
+        1. Install Spark from [Apache Spark version 3.2.3: Pre-built for Apache Hadoop 3.3 and later (Scala 2.13)](https://dlcdn.apache.org/spark/spark-3.2.3/spark-3.2.3-bin-hadoop3.2.tgz)
+        2. Download the file in a new folder called `spark` using
+        `wget <link_to_download>`
+        3. Unzip the file using the command
+        `tar xvzf <name_of_the_file_downloaded>`
+        4. Delete the downloaded file using
+        `rm <name_of_the_file_downloaded>`
+        5. Set the path to the jdk using the following two commands to create set the variable `JAVA_HOME`
+            * `export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"`
+            * `export PATH="${SPARK_HOME}/bin:${PATH}"`
+        6. Check if spark is installed by typing `spark shell` and executing spark
+        7. Test by typing following code:
+        ```scala
+        val data = 1 to 10000
+        val distData = sc.parallelize(data)
+        distData.filter(_ < 10).collect()
+        ```
 
+    3. Now add the export paths for JAVA_HOME and SPARK_HOME permenantly to the bash scricpt as follows:
+        - `nano .bashrc` -> type this to open the bashrc file in the editor
+        - Go to the end and append the above two export commands under the other export commands in new lines
+        - `Ctrl+O` -> to save the file
+        - `Ctrl+X` -> to exit the file
 * Goto the localhost forwarded port 4040 to view the spark jobs being executed by spark master
 
 ## Useful Codes
@@ -70,4 +94,55 @@
       spark_df.schema
       # To print schema in a nice tree format
       sparkDF.printSchema()
-      ```  
+      # To get a list of columns
+      sparkDF.columns
+      # To rename columns
+      new_sparkDF = sparkDF.withColumnRenames('old_column_name', 'new_column_name')
+      # To create a new column by applying a function to an existing column Where F is functions imported from pyspark.sql package
+      from pyspark.sql import functions as F
+      new_sparkDF = sparkDF.withColumn('name_of_the_existing_column/new_column_name', F.function_name(sparkDF.name_of_the_existing_column) )
+      # To select ceratin columns
+      new_sparkDF = sparkDF.select([list_of_columns])
+      # Joining multiple functions
+      sparkDF = sparkDF.select(['col1_name', 'col2_name']) \
+                       .withColumn('new_col_name', F.to_date(sparkDF.col1_name))
+      #   
+      ```
+
+
+## Spark Cluster:
+![spark_cluster](images/spark_cluster.JPG)
+
+* Hadoop/HDFS have now become redundat because we can now just store the data directly on the cloud storage (S3 or GCS) and the Executors can access the parquet data patitions directly from there. And because the Executors and the storage are in the same data center, the transfer of data is very fast and not expensive. We no longer require the data to be replicated and stored on the Executors like it's done when using Hadoop/HDFS. 
+
+## GroupBy in Spark
+
+* Satge 1 - For each partition the executer creates Key-Value paris which are the Intermediate Results
+* Stage 2 - Reshuffling (Expensive Operation) -> External Merge Sort Algorithm does Mapping using Key Value Pairs -> Reshuffle to bring same keys to single partition -> Reduce by merging records with same keys
+
+## Joins
+* Inner Join : Only the common records
+* Outer Join : If a value for a  common column in left table is missing in rigth table then use 0 and the same for vice-versa.
+* Joining Small table with a Big table - here spark uses the Broadcast methodoloy, where each executer gets a copy of the small table rather than a partition of the small table.
+
+## RDD's
+* Resilient Distributed Datasets - 
+
+## Connecting to Google Cloud Storage
+
+The Cloud Storage connector is an open source Java library that lets you run Apache Hadoop or Apache Spark jobs directly on data in Cloud Storage, and offers a number of benefits over choosing the Hadoop Distributed File System (HDFS).
+
+* Upload data from local system to GCS Bucket
+```bash
+    gsutil -m cp -r pq/ gs://dtc_data_lake_blissful-flames-375219/pq
+```
+
+* Download the Hadoop connector for Spark to connect to GCS
+    - Create a new directory called `lib`
+    - Download the .jar file in this new folder
+
+```bash
+    # URL of .jar file https://cloud.google.com/dataproc/docs/concepts/connectors/cloud-storage
+    # Alternatively download directly from GCS using the following command to download the .jar file
+    gsutil cp gs://hadoop-lib/gsc/gcs-connector-hadoop3-2.2.5.jar gcs-connector-hadoop3-2.2.5.jar
+```    

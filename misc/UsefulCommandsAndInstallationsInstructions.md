@@ -48,14 +48,6 @@
 * `vim hello.py` -> Create a python file [ref:](https://www.jcchouinard.com/create-python-script-from-terminal/) 
 
 
-### BASH commands for the csv file
-
-* `less yellow_tripdata_2021_01.csv` -> View few rows of the dataset
-* `head -n 10 yellow_tripdata_2021-01.csv` -> View first 100 rows of the dataset 
-* `head -n 10 yellow_tripdata_2021-01.csv  > yelllow_head.csv` -> Copy first 100 rows of the dataset to a new file
-* `wc -l yellow_tripdata_2021-01.csv`-> Count number of rows in the dataset
-* `gzip -d -c .\tes.csv.gz | wc -l` -> Count the rows in the gzip file
-
 
 ### Setting Environment variables
 * Create the environment variables in a file with .bashrc extention eg: `set_env.bashrc`
@@ -107,7 +99,15 @@
 * `nano <file_name>` -> to edit a file
 * `CTRL + O` -> to save
 * `Ctrl + X` -> to exit
-
+* `less yellow_tripdata_2021_01.csv` -> View few rows of the dataset
+* `head -n 10 yellow_tripdata_2021-01.csv` -> View first 100 rows of the dataset 
+* `head -n 10 yellow_tripdata_2021-01.csv  > yelllow_head.csv` -> Copy first 100 rows of the dataset to a new file
+* `wc -l yellow_tripdata_2021-01.csv`-> Count number of rows in the dataset
+* `gzip -d -c .\tes.csv.gz | wc -l` -> Count the rows in the gzip file
+* `ls |wc -l` -> count number of files in a folder
+* `ls -lh` -> list the files in folders with size details
+* `ls -lhR name_of_the_folder_with_subfolders` -> lists the contents of the folder and subfolders by going inside. R is for recursively.
+* `tree name_of_the_folder` -> View the folder contents in a tree format
 
 ### Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
 * Step 1: Go to the folder on the local machine which has the file to be transfered
@@ -123,7 +123,6 @@
 * `git clone {https link}` -> Anonymously clone a git repo
 * `git log --all --oneline` -> List all the commits
 * `git show` -> to view the commit message for a specific commit.
-
 
 
 ## Conda
