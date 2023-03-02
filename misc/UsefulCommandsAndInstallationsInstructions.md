@@ -64,6 +64,9 @@
 * `jupyter notebook` -> to open/start jupyter notebooks
 * `Ctrl + C` -> to close the terminal late
 
+## JUPYTER NOTEBOOK
+* `CTRL+Enter` -> Run a cell
+* `dd` -> delete a cell (Make sure you have selected the cell first which will change the cell color to blue/gray, green color indicates that cell contents are selected instead)
 
 ## Useful resources
 * [Introduction to command line](https://missing.csail.mit.edu/)
@@ -105,9 +108,14 @@
 * `wc -l yellow_tripdata_2021-01.csv`-> Count number of rows in the dataset
 * `gzip -d -c .\tes.csv.gz | wc -l` -> Count the rows in the gzip file
 * `ls |wc -l` -> count number of files in a folder
-* `ls -lh` -> list the files in folders with size details
+* `ls -lh` -> list the files in folders with size details, in human readable format
 * `ls -lhR name_of_the_folder_with_subfolders` -> lists the contents of the folder and subfolders by going inside. R is for recursively.
+* `ls -lr` -> long list format with reverse order while sorting
+* `ls -lg` -> like -l but do not list owner
 * `tree name_of_the_folder` -> View the folder contents in a tree format
+* `CTRL+A+C` -> Clear a screen and have other things running in background. More info [to install screen on VM](https://support.shells.net/hc/en-us/articles/1500003236241-How-to-Open-Multiple-Virtual-Terminal-Windows-on-Ubuntu-20-04-with-Screen) and [using it](https://help.ubuntu.com/community/Screen)
+* `screen -r` -> You can re-attach a detached session by typing that
+* `date` -> to print system date
 
 ### Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
 * Step 1: Go to the folder on the local machine which has the file to be transfered

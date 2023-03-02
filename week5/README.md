@@ -53,6 +53,7 @@
 * Goto the localhost forwarded port 4040 to view the spark jobs being executed by spark master
 
 ## Useful Codes
+* Before starting the notebook to run spark cluster execute the below commands
 * To run pyspark in the VM
     ```bash
     export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
@@ -132,17 +133,89 @@
 
 The Cloud Storage connector is an open source Java library that lets you run Apache Hadoop or Apache Spark jobs directly on data in Cloud Storage, and offers a number of benefits over choosing the Hadoop Distributed File System (HDFS).
 
-* Upload data from local system to GCS Bucket
+* PUSH DATA TO GCS: 
+    - Upload data from local system to GCS Bucket
+
 ```bash
     gsutil -m cp -r pq/ gs://dtc_data_lake_blissful-flames-375219/pq
 ```
 
-* Download the Hadoop connector for Spark to connect to GCS
-    - Create a new directory called `lib`
-    - Download the .jar file in this new folder
+* PULL DATA FROM GCS: 
+    - Download the Hadoop connector for Spark to connect to GCS via CLI
+    - First create a new directory called `lib`
+    - Download the .jar file in this new folder (commands below)
+    - Add the google credentials .json file to a variable
+    - Follow the steps in [09_spark_gcs.ipyb](week_5_batch_processing/code/09_spark_gcs.ipyb)
 
 ```bash
     # URL of .jar file https://cloud.google.com/dataproc/docs/concepts/connectors/cloud-storage
-    # Alternatively download directly from GCS using the following command to download the .jar file
+    # Alternatively download directly from GCS using the following command to copy the .jar from GCS to gcs-connector-hadoop3-2.2.5.jar in the lib folder
     gsutil cp gs://hadoop-lib/gsc/gcs-connector-hadoop3-2.2.5.jar gcs-connector-hadoop3-2.2.5.jar
 ```    
+
+## Creating local Spark cluster
+* Before we created a Spark Cluster by saying the master is local.
+* Create Spark cluster outside of the notebook:
+(Goto this [Spark Standalone Mode](https://spark.apache.org/docs/latest/spark-standalone.html) page to find the below codes)
+    
+    - START A MASTER CLUSTER:
+        - `./sbin/start-master.sh` use this command to start a Master cluster manually on the VM 
+        - On the VM:
+            * Go to the spark home directory
+            ```bash
+            # type this command to find the directory where spark is installed
+            echo $SPARK_HOME 
+            cd /home/sanyashireen/spark/spark-3.2.3-bin-hadoop3.2
+            ./sbin/start-master.sh
+            ```
+            * This starts manually the spark MASTER cluster locally 
+            * Forward the port 8080 and open the Spark Master it in the web browser
+            * Open the jupyter notebook on web browser localhost:8888 after performing the following steps
+                - [Step 1](#`Useful-Codes`) to set the path
+                - Step 2 forward port 8888 on VSCode
+                - Step 3 start the jupyter notebooks type:
+                ```bash
+                cd folder_with_the_code_files
+                # cd /home/sanyashireen/week_5_batch_processing/code
+                jupyter notebook 
+                ```
+    - ASSIGN AN EXECUTER TO MASTER CLUSTER
+        - Go back to spark directory by executing
+        ```bash
+        cd /home/sanyashireen/spark/spark-3.2.3-bin-hadoop3.2
+        ```
+        - Then assign a worker to the master with the following command
+        ```bash
+        ./sbin/start-worker.sh <master-spark-URL>
+        # for example 
+        #./sbin/start-worker.sh spark://de-zoomcamp.us-central1-c.c.blissful-flames-375219.internal:7077
+        ```
+
+    - Run the file [10_spark_locally.ipyb](week_5_batch_processing/code/10_spark_locally.ipyb)
+
+    - Convert the above file from a jupyter notebook to a python script
+        - Go to the terminal and into the folder that has this file
+        ```bash
+        cd /home/sanyashireen/week_5_batch_processing/code
+        # Command to convert notebook to python script
+        jupyter nbconvert --to=script 10_spark_locally.ipynb
+        ```  
+    - STOP MASTER & WORKER CLUSTER
+        - ```bash
+          cd /home/sanyashireen/spark/spark-3.2.3-bin-hadoop3.2
+          ./sbin/stop-master.sh
+          ./sbin/stop-worker.sh
+          ```  
+
+## Creating Spark cluster in GCP [Video](https://www.youtube.com/watch?v=osAiAYahvh8&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=57)
+* We use Dataproc
+* Create a Dataproc instance
+* Copy python code from local VM to GCS
+  ```bash
+  gsutil cp 10_spark_locally.py gs://dtc_data_lake_blissful-flames-375219/code/10_spark_locally.py
+  ```
+* Run the Spark job in this file either from UI or CLI of the VM
+    * UI - Look for instructions in the video
+    * CLI :
+        - Step 1: Change the settings in IAM to give the VM permission to submit Spark Jobs
+        - Run the command in [this](week_5_batch_processing/code/data_proc.bash) file 
