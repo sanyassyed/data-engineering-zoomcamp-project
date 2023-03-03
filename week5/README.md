@@ -27,14 +27,14 @@
             - 
     
     2. Install Spark
-        1. Install Spark from [Apache Spark version 3.2.3: Pre-built for Apache Hadoop 3.3 and later (Scala 2.13)](https://dlcdn.apache.org/spark/spark-3.2.3/spark-3.2.3-bin-hadoop3.2.tgz)
+        1. Install Spark from [Apache Spark version 3.3.2: Pre-built for Apache Hadoop 3.3 and later (Scala 2.13)](https://dlcdn.apache.org/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz)
         2. Download the file in a new folder called `spark` using
         `wget <link_to_download>`
         3. Unzip the file using the command
         `tar xvzf <name_of_the_file_downloaded>`
         4. Delete the downloaded file using
         `rm <name_of_the_file_downloaded>`
-        5. Set the path to the jdk using the following two commands to create set the variable `JAVA_HOME`
+        5. Set the path to the jdk using the following two commands to create set the variable `SPARK_HOME`
             * `export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"`
             * `export PATH="${SPARK_HOME}/bin:${PATH}"`
         6. Check if spark is installed by typing `spark shell` and executing spark
@@ -45,7 +45,7 @@
         distData.filter(_ < 10).collect()
         ```
 
-    3. Now add the export paths for JAVA_HOME and SPARK_HOME permenantly to the bash scricpt as follows:
+    3. Now add the export paths for JAVA_HOME and SPARK_HOME permenantly to the bash script as follows:
         - `nano .bashrc` -> type this to open the bashrc file in the editor
         - Go to the end and append the above two export commands under the other export commands in new lines
         - `Ctrl+O` -> to save the file
@@ -184,7 +184,7 @@ The Cloud Storage connector is an open source Java library that lets you run Apa
         ```bash
         cd /home/sanyashireen/spark/spark-3.2.3-bin-hadoop3.2
         ```
-        - Then assign a worker to the master with the following command
+        - Then assign one (or more) worker to the master with the following command
         ```bash
         ./sbin/start-worker.sh <master-spark-URL>
         # for example 

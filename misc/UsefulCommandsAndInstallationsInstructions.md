@@ -113,7 +113,9 @@
 * `ls -lr` -> long list format with reverse order while sorting
 * `ls -lg` -> like -l but do not list owner
 * `tree name_of_the_folder` -> View the folder contents in a tree format
+* `screen` -> to start using the screen functionality in a VM
 * `CTRL+A+C` -> Clear a screen and have other things running in background. More info [to install screen on VM](https://support.shells.net/hc/en-us/articles/1500003236241-How-to-Open-Multiple-Virtual-Terminal-Windows-on-Ubuntu-20-04-with-Screen) and [using it](https://help.ubuntu.com/community/Screen)
+* `CTRL(Hold)+A` -> to go to previous screen
 * `screen -r` -> You can re-attach a detached session by typing that
 * `date` -> to print system date
 
