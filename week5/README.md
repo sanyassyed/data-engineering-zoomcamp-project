@@ -63,7 +63,7 @@
 ## Why use Spark over DataWarehouse SQL? 
 * In Spark you can write your own functions and hence it is more flexible. 
 * Also many inbuilt functions are available.
-* We can do tests and make sure your code works and then execute it on your dataframe
+* We can do tests and make sure the code works and then execute it on the dataframe
 * Things that are not easy to execute in SQL can be easily done spark
 
 ## PySpark Important functions 

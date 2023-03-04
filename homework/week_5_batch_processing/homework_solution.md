@@ -1,4 +1,8 @@
 ## Week 5 Homework 
+NOTE:
+Codes are in these files in the repo
+1. [1_rw_partitions_local.ipyb](code/1_rw_partitions_local.ipynb) - has code used for solving Q1, Q2
+2. [2_rt_gcs.ipyb](code/2_rt_gcs.ipynb) - has code used for solving Q3, Q4, Q6 
 
 In this homework we'll put what we learned about Spark in practice.
 
@@ -96,18 +100,3 @@ Using the zone lookup data and the fhvhv June 2021 data, what is the name of the
 - **Answer: Crown Heights North**
 - ![Zone Nam](images/q6.JPG)
 </br></br>
-
-
-
-
-## Submitting the solutions
-
-* Form for submitting: https://forms.gle/EcSvDs6vp64gcGuD8
-* You can submit your homework multiple times. In this case, only the last submission will be used. 
-
-Deadline: 06 March (Monday), 22:00 CET
-
-
-## Solution
-
-We will publish the solution here
