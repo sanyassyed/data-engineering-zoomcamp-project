@@ -96,6 +96,11 @@
 ## Google VM
 * `ssh de-zoomcoamp` -> to ssh in to the VM on GCP
 * `gcloud auth login` -> to authenticate the VM to login into the project optionally try if you get error `gcloud auth application-default login` Then copy pase the code
+* `gcloud config set compute/zone <ZONE>` -> eg: us-central1-c
+* `gcloud config unset compute/zone` -> to unset the zone
+* ` gcloud compute instances list --project blissful-flames-375219` -> to list the instances in a project on GCP
+* `gcloud compute instances start de-zoomcamp --zone us-central1-c --project blissful-flames-375219` ->  to start an instance on GCP
+* ``
 * `gsutil mv gs://dtc_data_lake_blissful-flames-375219/data/green/ gs://dtc_data_lake_blissful-flames-375219/data_parquet` -> to move files in GCS
 * `echo $PATH` -> To view the path varibles
 * `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
@@ -118,7 +123,9 @@
 * `CTRL(Hold)+A` -> to go to previous screen
 * `screen -r` -> You can re-attach a detached session by typing that
 * `date` -> to print system date
-
+* **NOTE:** When starting VM do the following steps
+    - Type `screen` and start the screen program that lets you have multiple terminals for 1 VM
+    
 ### Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
 * Step 1: Go to the folder on the local machine which has the file to be transfered
 * Step 2: Type `sftp ssh_hostname` this will connect you to the root folder in the VM server
