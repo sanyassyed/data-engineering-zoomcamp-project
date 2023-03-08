@@ -52,9 +52,13 @@
 ### Setting Environment variables
 * Create the environment variables in a file with .bashrc extention eg: `set_env.bashrc`
 * Set the environment variables using the keyword 'export' followed by = symbol with no space and its value enclosed in double quotes eg: `export USER='root'`
+* Leave the next line empty by pressing enter
 * Run the file in bash as follows: `source set_env.bashrc`
 * To access the environment variables use `$` sign followed by variable name eg: `echo $USER`
 [More Details Here](https://drstearns.github.io/tutorials/env/)
+* `printenv` -> The command prints all or the specified environment variables.
+* `set` – The command sets or unsets shell variables. When used without an argument it will print a list of all variables including environment and shell variables, and shell functions.
+* `echo $SHELL` -> to find which shell it is bash or sh
 
 ## POSTGRES
 * `TRUNCATE yellow_taxi_data` To delete rows in a table
@@ -67,6 +71,7 @@
 ## JUPYTER NOTEBOOK
 * `CTRL+Enter` -> Run a cell
 * `dd` -> delete a cell (Make sure you have selected the cell first which will change the cell color to blue/gray, green color indicates that cell contents are selected instead)
+* `jupyter notebook stop` -> to stop the jupyter notebook
 
 ## Useful resources
 * [Introduction to command line](https://missing.csail.mit.edu/)
@@ -117,6 +122,7 @@
 * `ls -lhR name_of_the_folder_with_subfolders` -> lists the contents of the folder and subfolders by going inside. R is for recursively.
 * `ls -lr` -> long list format with reverse order while sorting
 * `ls -lg` -> like -l but do not list owner
+* `la -a` -> this lists all files including the . files
 * `tree name_of_the_folder` -> View the folder contents in a tree format
 * `screen` -> to start using the screen functionality in a VM
 * `CTRL+A+C` -> Clear a screen and have other things running in background. More info [to install screen on VM](https://support.shells.net/hc/en-us/articles/1500003236241-How-to-Open-Multiple-Virtual-Terminal-Windows-on-Ubuntu-20-04-with-Screen) and [using it](https://help.ubuntu.com/community/Screen)
