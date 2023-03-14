@@ -1,7 +1,8 @@
 # python notebook checkpoints
 **/.ipynb_checkpoints/
 
-
+# Credentials and api
+**/*api-key*
 # data files
 **/*.csv
 **/*.csv.gz
@@ -36,7 +37,7 @@ serving_dir
 .ipynb_checkpoints/
 
 
-# Predect .git ignore
+# Prefect .git ignore
 # prefect artifacts
 .prefectignore
 

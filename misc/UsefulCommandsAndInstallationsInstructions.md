@@ -146,18 +146,23 @@
 * `git clone {https link}` -> Anonymously clone a git repo
 * `git log --all --oneline` -> List all the commits
 * `git show` -> to view the commit message for a specific commit.
+* `git remote -v` -> will print the list of bookmarked repository names and additionally, the corresponding repository URL. The -v option stands for "verbose"
+* `git push --dry-run` -> to test is push to repo is working 
 
 
 ## Conda
 * [How to activate base in conda](https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/02-working-with-environments/index.html#:~:text=Conda%20has%20a%20default%20environment,into%20your%20base%20software%20environment.)
 * `conda env list` -> List the conda environments
+* `conda list -p  /home/sanyashireen/ny_taxi_rides_zoomcamp/venv` -> list all the packages installed in the environment
 * `$ conda remove --name my-first-conda-env --all` -> delete an entire environment
 * `conda remove --prefix /path/to/conda-env/ --all` -> If you wish to delete and environment that you created with a --prefix option, then you will need to provide the prefix again when removing the environment.
 
 ### Creating Virtual env in conda in the project directory
 * ` conda create --prefix ./.my_env_conda python=3.10.9 pip` -> Path to install the virtual env in the current project directory with pytho 3.10 and pip
-*  `conda activate .my_env_conda` - to activate the virtual env
+* `conda activate .my_env_conda/` - to activate the virtual env
 * `conda activate` -> don't use deactivate just use `activate` to go to base
+* `conda install <name_of_the_package>` -> to install a package in conda
+* `conda env remove -p /home/sanyashireen/venv` -> to delete a virtual env called venv. Make sure you are outside the virtual env you are trying to deactivate
 
 ## Ports
 * `netstat -ano | findStr "4200"`
@@ -190,3 +195,29 @@
 * `spark-shell` - to start spark in linux CLI
 * `which java` -> to check if java is installed and where
 * `which pyspark` -> to check if pyspark is installed and where
+
+## Steps to do when starting the VM
+* `gcloud compute instances start de-zoomcamp --zone us-central1-c --project *******`
+* copy the external ip and update the HostName field in the config file (on the local system located at ~/.ssh/config)
+* `screen` type this commnd to activate the package functionality to move between terminals
+* `Ctrl+A+C` -> to move between various screens/terminals in the VM
+* `conda activate <name_of_the_virtual_env>` -> to start the project virtual conda environment in the corresponding project
+* Connect the VS Code to the VM
+    - Click on the green arrow button on the bottom left and select `Connect to Host` 
+    - [Related Video](https://youtu.be/ae-CV2KfoN0)
+* Forward any ports using VSCode
+* When using jupyter notebook check if you are connected to the correct kernel
+* Push any changes to GitHub
+* `Ctrl+D` -> To exit the VM 
+
+## VS Code
+* `Ctrl+/` -> Mutiline comment and uncomment
+
+## View a html file on the VM on the local machine
+* Do the steps [here](https://stackoverflow.com/questions/21124869/how-to-view-html-file-in-remote-unix-server) to view the html file on the local browser
+    ```bash
+    cd /home/sanyashireen/taxi_rides_ny_duckdb/.piperider/outputs/latest/
+    python -m http.server 8000
+    # Then forward this port on VSCode
+    # Open localhost:8000 on the local browser	
+    ```
