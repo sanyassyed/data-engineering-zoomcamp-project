@@ -19,7 +19,7 @@
     conda create -p ./venv pip
     conda activate venv/
     # install dbt-core and dbt with bigquery adapter and piperider with bigquery adapter
-    pip install dbt-core dbt-bigquery 'piperider[bigquery]'
+    pip install dbt-core dbt-bigquery 'piperider[bigquery]' python=3.9
     # piprider needs gcloud since its not availble in the virtual env we install it here too
     conda install -c conda-forge google-cloud-sdk
 
@@ -47,8 +47,36 @@
 
     # Connect to piperider cloud
     piperider cloud signup # enter email and api key
+    
+    # or
+    
+    # enter these details to detect login details to pipercloud automatically
+    # add it to system root folder ~/.piperider/profile.yml :
+    user_id: 12344
+	api_token: abc123
+    cloud_config:
+        default_project: Ssyed/default
+        auto_upload: true
+    
+    
     # Check PipeRider settings
     piperider diagnose
+    
     # Run piperider
     piperider run --upload
     ```
+* in the models/core/facts_trips.sql add this condition to make sure the year is only 2019 and 2020
+```sql
+where extract(year from trips_unioned.pickup_datetime) = 2019
+or
+extract(year from trips_unioned.pickup_datetime) = 2020
+```
+* And then execute the following
+```bash
+dbt build --var 'is_test_run: false'
+piperider run
+# to compare reports
+piperider compare-reports --last
+```
+
+* Then open the report on Piperider Cloud and the answers for the homework can be found in the report itself under tables/fact_trips tab.
