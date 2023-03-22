@@ -123,11 +123,23 @@
 * `ls -lr` -> long list format with reverse order while sorting
 * `ls -lg` -> like -l but do not list owner
 * `la -a` -> this lists all files including the . files
+* `ls -alt` -> to display by date
 * `tree name_of_the_folder` -> View the folder contents in a tree format
 * `screen` -> to start using the screen functionality in a VM
+* `screen -A -m -d -S jupyterscreen jupyter notebook --port=8888` -> to start jupyter in the background # Here is a breakdown of the different components of the command:
+    - screen: A terminal multiplexer that allows you to run multiple shell sessions within a single terminal window.
+    - -A: Adapt the terminal's size to the current screen size.
+    - -m: Start a new session without attaching to any existing sessions.
+    - -d: Detach the screen session after it has been started.
+    - -S jupyterscreen: Name the screen session "jupyterscreen".
+    - jupyter notebook: Launch the Jupyter Notebook server.
+    - --port=8888: Specify the port number on which the Jupyter Notebook server will run. In this case, it's set to port 8888.
+    - When you run this command, it will start a detached screen session with the name "jupyterscreen" and launch a Jupyter Notebook server on port 8888 within that session. This means that you can access the Jupyter Notebook server from another terminal window or from a web browser
 * `CTRL+A+C` -> Clear a screen and have other things running in background. More info [to install screen on VM](https://support.shells.net/hc/en-us/articles/1500003236241-How-to-Open-Multiple-Virtual-Terminal-Windows-on-Ubuntu-20-04-with-Screen) and [using it](https://help.ubuntu.com/community/Screen)
 * `CTRL(Hold)+A` -> to go to previous screen
-* `screen -r` -> You can re-attach a detached session by typing that
+* `screen -ls` -> to list all the screens
+* `screen -r <name_of_the_screen>` -> to reattach to the screen
+* `CTRL+A+d`-> to return you to the command prompt while leaving the screen session running in the background
 * `date` -> to print system date
 * **NOTE:** When starting VM do the following steps
     - Type `screen` and start the screen program that lets you have multiple terminals for 1 VM
@@ -140,14 +152,18 @@
 * To transfer from remote to local:
     - `get name_of_the_file_to_transfer` -> to transfer a file
     - `get -r name_of_the_folder_to_transfer` -> to transfer a folder
-
+* `screen -A -m -d -S jupyterscreen jupyter notebook --no-browser --port=8888`
+* `pgrep jupyter` -> to find the PID of jupyter 
+*  `kill PID` -> to kill the process running in the background
+* to run jupyter even when SSH connection terminates use Tmux. More info [here](https://stackoverflow.com/questions/47331050/how-to-run-jupyter-notebook-in-the-background-no-need-to-keep-one-terminal-for)
 
 ## Git
 * `git clone {https link}` -> Anonymously clone a git repo
 * `git log --all --oneline` -> List all the commits
 * `git show` -> to view the commit message for a specific commit.
 * `git remote -v` -> will print the list of bookmarked repository names and additionally, the corresponding repository URL. The -v option stands for "verbose"
-* `git push --dry-run` -> to test is push to repo is working 
+* `git push --dry-run` -> to test is push to repo is working
+* `git diff` -> to check the difference in the files that need to be comitted. 
 
 
 ## Conda
