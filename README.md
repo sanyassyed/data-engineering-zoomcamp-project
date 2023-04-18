@@ -6,6 +6,8 @@ I've followed the same repo structure as in the original course and this content
 
 ### Folder Descriptions:
 * `misc` -> Contains GCP Keys (Hidden), Useful Commands used during the course of this project
+* [week4/README.md](week4/README.md) -> contains `dbt-cloud` instructions
+* [homework/workshop_piperider/README.md](homework/workshop_piperider/README.md) -> contains `dbt-core` instructions
 
 ### My System details:
 * OS: MS Windows 10 x-64 based PC

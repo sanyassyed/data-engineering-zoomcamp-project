@@ -1,5 +1,5 @@
 # Week 4: Analytics Engineering Notes
-
+## DBT-CLOUD
 ## ***Note***:
 
 * dbt Cloud project repo: [ny_taxi_rides_zoomcamp](https://github.com/sanyassyed/ny_taxi_rides_zoomcamp)
@@ -24,6 +24,7 @@ dbt is an open-source command line tool that helps analysts and engineers transf
 * Sub-Directory: to build the dbt project in a particular directory, specify the directory in the sub directory. For example here I specified the sub-directory as `/week4/ny_taxi_rides_zoomcamp/` and when dbt initialized the project all the initialization happened in this directory. [Ref](https://www.youtube.com/watch?v=6zDTbM6OUcs)
 
 * Dataset: Specify the dataset name that you created in Big Query here (e.g. `dbt_sanya_models`), otherwise dbt will automatically try to create this for you with the region specified in the 'Location' section. But you want all your datasets in BQ to be in the same region, hence it's best to create it and specify it here.
+
 ![Output](images/setting_dataset_name.JPG)
 
 * Then push to a new branch and work on this part of the project on this branch

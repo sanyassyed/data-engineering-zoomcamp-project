@@ -96,7 +96,11 @@
 * `bash path_to_.sh_file` -> to install the package downloaded
 * `mv file1_to_move /destination_folder_path` -> move file from one folder to another
 * `mkdir path_to_parent_dir/new_dir_name` -> to make a new directory
-
+* `ps -p $$` -> to find the name of the shell
+* `which java` -> to check the location of java
+* `which python` -> to check which python is being used
+* `which pyspark` -> to check which pyspark being used
+* `pyhon/java --version` -> to find the version of either or
 
 ## Google VM
 * `ssh de-zoomcoamp` -> to ssh in to the VM on GCP
@@ -105,7 +109,9 @@
 * `gcloud config unset compute/zone` -> to unset the zone
 * ` gcloud compute instances list --project blissful-flames-375219` -> to list the instances in a project on GCP
 * `gcloud compute instances start de-zoomcamp --zone us-central1-c --project blissful-flames-375219` ->  to start an instance on GCP
-* ``
+* `gcloud auth list` -> to list previously active credentials
+* ` gcloud config set account ******@gmail.com` -> to setup a new account i.e google account (**@gmail.com)
+* `gcloud auth revoke ***@gmail.com` -> to revoke access credentials for an account
 * `gsutil mv gs://dtc_data_lake_blissful-flames-375219/data/green/ gs://dtc_data_lake_blissful-flames-375219/data_parquet` -> to move files in GCS
 * `echo $PATH` -> To view the path varibles
 * `sudo shutdown now` -> to shutdown the GCP VM instance from the terminal
@@ -143,6 +149,7 @@
 * `date` -> to print system date
 * **NOTE:** When starting VM do the following steps
     - Type `screen` and start the screen program that lets you have multiple terminals for 1 VM
+* `history` -> to view the list of commands typed in the CLI so far
     
 ### Copy file from local to VM server using SFTP (SSH File Transfer Protocol)
 * Step 1: Go to the folder on the local machine which has the file to be transfered
@@ -164,6 +171,9 @@
 * `git remote -v` -> will print the list of bookmarked repository names and additionally, the corresponding repository URL. The -v option stands for "verbose"
 * `git push --dry-run` -> to test is push to repo is working
 * `git diff` -> to check the difference in the files that need to be comitted. 
+* `git tag -a v1.4 -m "my version 1.4"` -> to create a tag
+* `git push -u origin master` -> to push the tags to master
+* `git checkout -b new_branch` -> to create a new branch
 
 
 ## Conda
@@ -237,3 +247,8 @@
     # Then forward this port on VSCode
     # Open localhost:8000 on the local browser	
     ```
+
+## Shebang Line / Magic Comment
+* `.sh` files use `#!/bin/bash`-> The #!/bin/bash at the beginning of a shell script file (also known as a shebang line) is called the interpreter directive, and it tells the operating system which interpreter to use to execute the commands in the script. In this case, #!/bin/bash specifies that the script should be executed using the Bash shell interpreter. When the script is executed, the operating system reads the interpreter directive and uses it to determine how to execute the script. The shebang line must be the first line of the shell script file, and it must begin with the characters #! (hashbang or pound bang). The rest of the line specifies the path to the interpreter program that should be used to execute the script. For example, if you have a script called myscript.sh that should be executed using the Bash shell, you can add the #!/bin/bash shebang line at the beginning of the file to ensure that the script is executed using the Bash shell.
+
+* `.py` file use `# -- coding: utf-8 --` -> 

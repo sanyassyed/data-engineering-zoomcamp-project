@@ -1,5 +1,12 @@
-* [dbt-bigquery connection info](https://www.shipyardapp.com/blog/dbt-core-bigquery/)
+# DBT-CORE & PIPERIDER
+
+SETTING UP THE DBT Project (done in week4) with DBT-CORE (this project was intially created on dbt-cloud, hence it needs to be tweeked to be run on dbt-core locally) and then using PipeRider on it
+
+* [Reference: dbt-bigquery connection info](https://www.shipyardapp.com/blog/dbt-core-bigquery/)
 * Clone the [week 4 repo](https://github.com/sanyassyed/ny_taxi_rides_zoomcamp) in the VM
+* Setup dbt-core to build the dbt project and connect it to BQ
+* Setup piperider to use on the dbt-project
+
     ```bash
     # Create a new branch
     git switch -c develop_piperider
@@ -65,18 +72,18 @@
     # Run piperider
     piperider run --upload
     ```
-* in the models/core/facts_trips.sql add this condition to make sure the year is only 2019 and 2020
-```sql
-where extract(year from trips_unioned.pickup_datetime) = 2019
-or
-extract(year from trips_unioned.pickup_datetime) = 2020
-```
-* And then execute the following
-```bash
-dbt build --var 'is_test_run: false'
-piperider run
-# to compare reports
-piperider compare-reports --last
-```
+* In `models/core/facts_trips.sql` add this condition to make sure the year is only 2019 and 2020
+    ```sql
+    where extract(year from trips_unioned.pickup_datetime) = 2019
+    or
+    extract(year from trips_unioned.pickup_datetime) = 2020
+    ```
+* Then execute the following
+    ```bash
+    dbt build --var 'is_test_run: false'
+    piperider run
+    # to compare reports
+    piperider compare-reports --last
+    ```
 
-* Then open the report on Piperider Cloud and the answers for the homework can be found in the report itself under tables/fact_trips tab.
+* Open the report on Piperider Cloud and the answers for the homework can be found in the report itself under tables/fact_trips tab.
