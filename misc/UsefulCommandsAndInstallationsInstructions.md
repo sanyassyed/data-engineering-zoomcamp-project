@@ -238,6 +238,11 @@
 
 ## VS Code
 * `Ctrl+/` -> Mutiline comment and uncomment
+* `Ctrl + Shift + L` -> Select a term and press this it will select multiple occurances of the term 
+* `Hold Alt` -> Insert multiline cursors at rondom locations
+* `Ctrl + Alt + Arrow Keys` -> to move the multiline cursors for editing
+* `Shift + End` -> Selects everthing from cursor to end of the line
+* `shift + Home -> Selects everything from cursor to beginning of the line
 
 ## View a html file on the VM on the local machine
 * Do the steps [here](https://stackoverflow.com/questions/21124869/how-to-view-html-file-in-remote-unix-server) to view the html file on the local browser
