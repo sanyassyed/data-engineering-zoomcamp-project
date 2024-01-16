@@ -131,7 +131,13 @@
 * `la -a` -> this lists all files including the . files
 * `ls -alt` -> to display by date
 * `tree name_of_the_folder` -> View the folder contents in a tree format
-* `screen` -> to start using the screen functionality in a VM
+  
+## Screen commands
+* [Resource Video](https://www.youtube.com/watch?v=Ez7DBgS8fyA)
+* `screen` -> to start using the screen functionality in a VM i.e to launch screen
+* `screen -r <name_of_the_screen>` -> to reattach to the screen
+* `CTRL+A (release and press) + d`-> to disconnect & return you to the command prompt while leaving the screen session running in the background
+* `q` -> to quit the current screen session you are in
 * `screen -A -m -d -S jupyterscreen jupyter notebook --port=8888` -> to start jupyter in the background # Here is a breakdown of the different components of the command:
     - screen: A terminal multiplexer that allows you to run multiple shell sessions within a single terminal window.
     - -A: Adapt the terminal's size to the current screen size.
@@ -142,10 +148,9 @@
     - --port=8888: Specify the port number on which the Jupyter Notebook server will run. In this case, it's set to port 8888.
     - When you run this command, it will start a detached screen session with the name "jupyterscreen" and launch a Jupyter Notebook server on port 8888 within that session. This means that you can access the Jupyter Notebook server from another terminal window or from a web browser
 * `CTRL+A+C` -> Clear a screen and have other things running in background. More info [to install screen on VM](https://support.shells.net/hc/en-us/articles/1500003236241-How-to-Open-Multiple-Virtual-Terminal-Windows-on-Ubuntu-20-04-with-Screen) and [using it](https://help.ubuntu.com/community/Screen)
-* `CTRL(Hold)+A` -> to go to previous screen
+* `CTRL+A` -> to go to previous screen
 * `screen -ls` -> to list all the screens
-* `screen -r <name_of_the_screen>` -> to reattach to the screen
-* `CTRL+A+d`-> to return you to the command prompt while leaving the screen session running in the background
+
 * `date` -> to print system date
 * **NOTE:** When starting VM do the following steps
     - Type `screen` and start the screen program that lets you have multiple terminals for 1 VM
