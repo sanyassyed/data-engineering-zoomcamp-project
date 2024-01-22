@@ -6,10 +6,12 @@
 * `apt-get install vim`
 
 ## Downloading or building an image
+
 The below commands are used to download images from the docker online repo and then run them to start the containers
 * `docker run -it hello-world`
 * `docker run -it ubuntu bash`
 * `docker run -it --entrypoint=bash pyhton:3.9`
+
 To build images from the DockerFile in the current folder use the `build` command
 * `docker build -t test:pandas .`
   
