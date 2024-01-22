@@ -6,7 +6,7 @@
 * `apt-get install vim`
 
 ### Images running:
-* `docker ps`
+* `docker image ls`
 * `docker pause /(unpause)` -> hibernate
 * `docker kill` -> soft shut-down abrupt
 * `docker stop / (start,restart)` -> graceful hard shut-down (by unplugging the system)
@@ -18,10 +18,10 @@
 [REF:](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG/thread/C01FABYF2RG-1673626584.350539)
 
 ### Checking docker networks, containers that are on
-* `docker container ls`
+* `docker container ls/ps`
 * `docker network ls`
 * `docker network inspect`
-* `container ps`
+* `docker container ls/ps`
 
 ### docker compose
 * `docker-compose up` -> to start docker compose in non-detach mode
