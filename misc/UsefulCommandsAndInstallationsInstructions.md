@@ -18,11 +18,13 @@ To build images from the DockerFile in the current folder use the `build` comman
   
 ### Images running:
 * `docker image ls`
+* `docker image rm 5829e8d94d3c` ->to remove the image with 5829e8d94d3c imageid
+* `docker image ls -aq` -> to list only the image id's of all the images
+* `docker image rm $(docker ps -aq)` or `docker rm $(docker ps -aq)` -> to remove all images but first stop and delete the dependant containers
 * `docker pause /(unpause)` -> hibernate
 * `docker kill` -> soft shut-down abrupt
 * `docker stop / (start,restart)` -> graceful hard shut-down (by unplugging the system)
 * `docker down / (up,create)` -> factory reset
-* `docker image rm test:python` -> to remove the image with the name test and tag python
 [REF:](https://stackoverflow.com/questions/63740108/what-is-the-difference-between-docker-compose-commands-down-kill-and-sto)
 
 * `docker stop container_id`  -> if you want to 
@@ -31,7 +33,10 @@ To build images from the DockerFile in the current folder use the `build` comman
 
 ### Checking docker networks, containers that are on
 * `docker container ls/ps`
+* `docker container rm 5829e8d94d3c` ->to remove the container with 5829e8d94d3c container id
+* `docker container rm $(docker ps -aq)` or `docker rm $(docker ps -aq)` -> to remove all stopped containers
 * `docker network ls`
+* * `docker network ls -a` -> to view stopped containers
 * `docker network inspect`
 * `docker container ls/ps`
 
