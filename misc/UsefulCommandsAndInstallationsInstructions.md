@@ -14,6 +14,7 @@ The below commands are used to download images from the docker online repo and t
 
 To build images from the DockerFile in the current folder use the `build` command
 * `docker build -t test:pandas .`
+* `docker run -it test:pandas`
   
 ### Images running:
 * `docker image ls`
@@ -21,6 +22,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 * `docker kill` -> soft shut-down abrupt
 * `docker stop / (start,restart)` -> graceful hard shut-down (by unplugging the system)
 * `docker down / (up,create)` -> factory reset
+* `docker image rm test` -> to remove the image with the name test 
 [REF:](https://stackoverflow.com/questions/63740108/what-is-the-difference-between-docker-compose-commands-down-kill-and-sto)
 
 * `docker stop container_id`  -> if you want to 
