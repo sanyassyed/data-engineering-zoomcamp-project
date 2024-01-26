@@ -285,4 +285,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 ## Shebang Line / Magic Comment
 * `.sh` files use `#!/bin/bash`-> The #!/bin/bash at the beginning of a shell script file (also known as a shebang line) is called the interpreter directive, and it tells the operating system which interpreter to use to execute the commands in the script. In this case, #!/bin/bash specifies that the script should be executed using the Bash shell interpreter. When the script is executed, the operating system reads the interpreter directive and uses it to determine how to execute the script. The shebang line must be the first line of the shell script file, and it must begin with the characters #! (hashbang or pound bang). The rest of the line specifies the path to the interpreter program that should be used to execute the script. For example, if you have a script called myscript.sh that should be executed using the Bash shell, you can add the #!/bin/bash shebang line at the beginning of the file to ensure that the script is executed using the Bash shell.
 
-* `.py` file use `# -- coding: utf-8 --` -> 
+* `.py` file use `# -- coding: utf-8 --` ->
+
+## Other useful resources
+* [String Formatting in Python](https://www.pythonmorsels.com/string-formatting/)
