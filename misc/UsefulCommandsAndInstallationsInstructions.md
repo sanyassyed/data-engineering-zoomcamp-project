@@ -33,6 +33,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 
 ### Checking docker networks, containers that are on
 * `docker container ls/ps`
+* `docker container start container_id` -> to start a conatiner
 * `docker container rm 5829e8d94d3c` ->to remove the container with 5829e8d94d3c container id
 * `docker container rm $(docker ps -aq)` or `docker rm $(docker ps -aq)` -> to remove all stopped containers
 * `docker network ls`
