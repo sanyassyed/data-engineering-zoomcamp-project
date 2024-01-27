@@ -27,17 +27,16 @@ To build images from the DockerFile in the current folder use the `build` comman
 * `docker down / (up,create)` -> factory reset
 [REF:](https://stackoverflow.com/questions/63740108/what-is-the-difference-between-docker-compose-commands-down-kill-and-sto)
 
-* `docker stop container_id`  -> if you want to 
-* `docker start container_id` -> to start a container
-[REF:](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG/thread/C01FABYF2RG-1673626584.350539)
-
 ### Checking docker networks, containers that are on
 * `docker container ls/ps`
-* `docker container start container_id` -> to start a conatiner
-* `docker container rm 5829e8d94d3c` ->to remove the container with 5829e8d94d3c container id
+* `docker container start container_id` -> to start a conatiner or
+* `docker stop container_id`  -> to stop the container
+* `docker start container_id` -> to start a container
+[REF:](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG/thread/C01FABYF2RG-1673626584.350539)
+* `docker container rm 5829e8d94d3c` -> to remove the container with 5829e8d94d3c container id
 * `docker container rm $(docker ps -aq)` or `docker rm $(docker ps -aq)` -> to remove all stopped containers
 * `docker network ls`
-* * `docker network ls -a` -> to view stopped containers
+*  `docker network ls -a` -> to view stopped containers
 * `docker network inspect`
 * `docker container ls/ps`
 
