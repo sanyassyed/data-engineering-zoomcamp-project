@@ -6,7 +6,7 @@
 * `apt-get update`
 * `apt-get install vim`
 
-## Image Download or Build
+### Image Download or Build
 
 The below commands are used to download images from the docker online repo and then run them to start the containers
 * `docker run -it hello-world`
