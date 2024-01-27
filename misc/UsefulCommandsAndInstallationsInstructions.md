@@ -1,3 +1,4 @@
+# Useful commands for DE Project
 ## Docker
 
 ### Install vim in docker:
@@ -5,7 +6,7 @@
 * `apt-get update`
 * `apt-get install vim`
 
-## Downloading or building an image
+## Image Download or Build
 
 The below commands are used to download images from the docker online repo and then run them to start the containers
 * `docker run -it hello-world`
@@ -16,7 +17,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 * `docker build -t test:pandas .`
 * `docker run -it test:pandas`
   
-### Images running:
+### Images Run:
 * `docker image ls`
 * `docker image rm 5829e8d94d3c` ->to remove the image with 5829e8d94d3c imageid
 * `docker image ls -aq` -> to list only the image id's of all the images
@@ -27,7 +28,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 * `docker down / (up,create)` -> factory reset
 [REF:](https://stackoverflow.com/questions/63740108/what-is-the-difference-between-docker-compose-commands-down-kill-and-sto)
 
-### Checking docker networks, containers that are on
+### Containers
 * `docker container ls/ps`
 * `docker container start container_id` -> to start a conatiner or
 * `docker stop container_id`  -> to stop the container
@@ -35,12 +36,14 @@ To build images from the DockerFile in the current folder use the `build` comman
 [REF:](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG/thread/C01FABYF2RG-1673626584.350539)
 * `docker container rm 5829e8d94d3c` -> to remove the container with 5829e8d94d3c container id
 * `docker container rm $(docker ps -aq)` or `docker rm $(docker ps -aq)` -> to remove all stopped containers
+
+### Networks
 * `docker network ls`
 *  `docker network ls -a` -> to view stopped containers
 * `docker network inspect`
 * `docker container ls/ps`
 
-### docker compose
+### Docker-Compose
 * `docker-compose up` -> to start docker compose in non-detach mode
 * `docker-compose up -d` -> to start docker  compose in detached mode i.e without losing the terminal
 * `docker-compose stop` -> to close the containers - use this if you don't want to delete the containers
