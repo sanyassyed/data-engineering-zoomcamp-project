@@ -16,6 +16,7 @@ The below commands are used to download images from the docker online repo and t
 To build images from the DockerFile in the current folder use the `build` command
 * `docker build -t test:pandas .`
 * `docker run -it test:pandas`
+* `docker run -it --entrypoint=bash python:3.9`
   
 ### Images Run:
 * `docker image ls`
@@ -31,6 +32,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 ### Containers
 * `docker container ls/ps`
 * `docker container start container_id` -> to start a conatiner or
+* `docker exec -it container_id bash` -> to enter the container
 * `docker stop container_id`  -> to stop the container
 * `docker start container_id` -> to start a container
 [REF:](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG/thread/C01FABYF2RG-1673626584.350539)
