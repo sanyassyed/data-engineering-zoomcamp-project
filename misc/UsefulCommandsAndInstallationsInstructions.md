@@ -84,6 +84,8 @@ To build images from the DockerFile in the current folder use the `build` comman
 
 ## POSTGRES
 * `TRUNCATE yellow_taxi_data` To delete rows in a table
+### CLI
+* `\d+ table_name` -> to view the table schema
 
 ## PYTHON
 * `pip install jupyter` -> to install jupyter notebook
