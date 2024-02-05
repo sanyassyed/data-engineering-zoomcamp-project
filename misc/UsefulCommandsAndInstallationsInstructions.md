@@ -38,12 +38,15 @@ To build images from the DockerFile in the current folder use the `build` comman
 [REF:](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG/thread/C01FABYF2RG-1673626584.350539)
 * `docker container rm 5829e8d94d3c` -> to remove the container with 5829e8d94d3c container id
 * `docker container rm $(docker ps -aq)` or `docker rm $(docker ps -aq)` -> to remove all stopped containers
+* `docker ps --format "{{.Names}}"` -> to view the name of the last added container
 
 ### Networks
 * `docker network ls`
-*  `docker network ls -a` -> to view stopped containers
+*  `docker network ls -a` -> to view stopped networks
 * `docker network inspect`
 * `docker container ls/ps`
+* `docker network create [OPTIONS] NETWORK_NAME` -> to create a new network
+* `docker network connect network_name container_name` -> to add a running container to a network. Note: First create a network
 
 ### Docker-Compose
 * `docker-compose up` -> to start docker compose in non-detach mode
