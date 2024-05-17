@@ -94,6 +94,7 @@ To build images from the DockerFile in the current folder use the `build` comman
 * `pip install jupyter` -> to install jupyter notebook
 * `jupyter notebook` -> to open/start jupyter notebooks
 * `Ctrl + C` -> to close the terminal late
+* `alias python=python3` A simple safe way to set python3 to python keyword. Place this line into `~/.bashrc` or `~/.bash_aliases` file and after adding the line in the file, run `source ~/.bashrc`
 
 ## JUPYTER NOTEBOOK
 * `CTRL+Enter` -> Run a cell
